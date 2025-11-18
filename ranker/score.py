@@ -15,7 +15,8 @@ stemmer = SnowballStemmer("english")
 
 def stem_tokenizer(text):
     tokens = word_tokenize(text)
-    return [stemmer.stem(token) for token in tokens]
+    stemmed_tokens = [stemmer.stem(token) for token in tokens]
+    return " ".join(stemmed_tokens)
 
 
 # Takes in a website url and recursively crawls until it
@@ -33,7 +34,7 @@ def indexWebsite(seed_url):
     url_to_id = {}
     id_to_url = []
     adj = []      # adjacency list: list of sets
-    texts = {}    # doc_id -> raw text
+    texts = []    # text indexed by docid
     visited = set()
 
     def get_id(url):
@@ -41,6 +42,7 @@ def indexWebsite(seed_url):
             url_to_id[url] = len(id_to_url)
             id_to_url.append(url)
             adj.append(set())   # allocate adjacency list entry
+            texts.append("")    # pre-allocate slot for text
         return url_to_id[url]
 
     # initialize seed node
@@ -76,7 +78,7 @@ def indexWebsite(seed_url):
             target_id = get_id(target)
 
             print(f"Adding target_id: {target_id}")
-            print(f"Adding outlink: {target_id}")
+            print(f"Adding outlink: {target}")
             outlinks.add(target_id)
 
             if target not in visited and target not in to_visit:
@@ -118,9 +120,12 @@ def save_query(filepath, url, stemmed_query):
 
 
 def load_queries(filepath):
-    with open(filepath) as f:
-        data = json.load(f)
-    return {url: set(tokens) for url, tokens in data.items()}
+    try:
+        with open(filepath) as f:
+            data = json.load(f)
+            return {url: set(tokens) for url, tokens in data.items()}
+    except FileNotFoundError:
+        return {}
 
 
 if __name__ == "__main__":
@@ -138,53 +143,40 @@ if __name__ == "__main__":
     except LookupError:
         nltk.download("punkt_tab")
 
-    # Query
-    query = "repairable car"
-    stemmed_query = stem_tokenizer(query.lower())
-
     # Index the doccuments and get a text info and info for building the tf-idf ranking
     url_to_id, id_to_url, texts, adj = indexWebsite(
         "http://130.215.143.215/doc0.html")
 
-    print(f"url_to_id: {url_to_id}")
-    print(f"id_to_url: {id_to_url}")
-    print(f"texts: {texts}")
-    print(f"adj: {adj}")
+    # print(f"url_to_id: {url_to_id}")
+    # print(f"id_to_url: {id_to_url}")
+    # print(f"texts: {texts}")
+    # print(f"adj: {adj}")
 
-    # # TF-IDF COMPUTE
-    # # Get tf-idf scores across the doccuments
-    # vectorizer = TfidfVectorizer(stop_words='english')
-    # tfidf_matrix = vectorizer.fit_transform(texts)
-    #
-    # # Transform the query using the same fitted vectorizer
-    # query_tfidf = vectorizer.transform(query.split(' '))
-    #
-    # content_scores = cosine_similarity(query_tfidf, tfidf_matrix)
-    # # content_scores = cosine_similarity(query_tfidf, tfidf_matrix).flatten()
-    # content_scores_norm = normalize(content_scores)
-    # print(content_scores)
-    #
-    # # PAGERANK COMPUTE
-    # G = nx.DiGraph()
-    #
-    # # Adding edges from the indexer's outlinks for pagerank computation
-    # for i, outlinks in enumerate(adj):
-    #     for j in outlinks:
-    #         G.add_edge(i, j)
-    #
-    # # pagerank_scores = nx.pagerank(G)  # returns dict {doc_index: score}
-    # pagerank_scores = nx.pagerank_scipy(G)  # returns dict {doc_index: score}
-    # pagerank_scores = np.array([pagerank_scores[i] for i in range(len(texts))])
-    #
-    # pagerank_scores_norm = normalize(pagerank_scores)
+    query = "repairable car"
 
-    # Compute our metric. TEMP for now
+    # TF-IDF COMPUTE
+    # Get tf-idf scores across the doccuments
+    vectorizer = TfidfVectorizer(stop_words='english')
+    tfidf_matrix = vectorizer.fit_transform(texts)
+
+    stemmed_query = stem_tokenizer(query.lower())
+    query_tfidf = vectorizer.transform([stemmed_query])
+
+    # PAGERANK COMPUTE
+    G = nx.DiGraph()
+
+    # Adding edges from the indexer's outlinks for pagerank computation
+    for i, outlinks in enumerate(adj):
+        for j in outlinks:
+            G.add_edge(i, j)
+
+    pagerank_scores = nx.pagerank(G)  # returns dict {doc_index: score}
 
     # TODO: this assumes that we only get query words within the words in our text space from the scraper
     # Get our text-space
     text_space = set()
-    for key in texts:
-        for token in texts[key]:
+    for text in texts:
+        for token in text:
             text_space.add(token)
 
     vocab = list(text_space)
@@ -212,12 +204,40 @@ if __name__ == "__main__":
     # Now we can go through and compute the score for each URL (we use 1 if
     # no data so we don't hurt things if we haven't seen that users want it
     # for another query type)
+    normalRanking = {}
+    ourRanking = {}
 
-    # Now we compute the actual ranking
-    for website_id in texts:
+    print("Rankings:")
+    for website_id in range(len(texts)):
         url = id_to_url[website_id]
 
-        if url in url_query_vects:
-            custom_method_score = cosine_similarity(query_vec, )[0][0]
+        # 1. TF-IDF cosine similarity for this specific document
+        doc_tfidf_score = cosine_similarity(
+            query_tfidf, tfidf_matrix[website_id])[0][0]
+
+        # 2. PageRank score for this document
+        pr_score = pagerank_scores[website_id]
+
+        # 3. Prior query similarity score
+        if url not in url_query_vects:
+            custom_method_score = 1.0
         else:
-            custom_method_score = 1
+            custom_method_score = cosine_similarity(
+                query_vec, url_query_vects[url])[0][0]
+
+        normalRanking[url] = doc_tfidf_score*pr_score
+        ourRanking[url] = doc_tfidf_score*pr_score*custom_method_score
+
+        print(f"{url} score: "
+              f"user-query: {custom_method_score}, "
+              f"tf-idf: {doc_tfidf_score}, "
+              f"pagerank: {pr_score}")
+
+print(f"Query: {query}")
+print("Normal ranking:")
+for url in sorted(normalRanking, key=normalRanking.get, reverse=True):
+    print(f"Score {normalRanking[url]}, Page {url}")
+
+print("Our ranking:")
+for url in sorted(ourRanking, key=ourRanking.get, reverse=True):
+    print(f"Score {ourRanking[url]}, Page {url}")
