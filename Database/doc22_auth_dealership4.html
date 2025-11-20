@@ -4,75 +4,154 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Toyota of North Austin - Your Local Toyota Source</title>
-    <!-- Load Tailwind CSS for utility classes (used for basic structure and responsiveness) -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Basic structural CSS only -->
     <style>
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f0f3f6; /* Light background */
-            color: #1f2937; /* Dark text */
+            font-family: 'Times New Roman', serif; /* Very basic font */
+            background-color: #f8f8f8; /* Light grey background */
+            color: #111;
+            margin: 20px;
         }
-        .container-box {
-            background-color: #ffffff;
-            padding: 24px;
+
+        .main-wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 15px;
+            background-color: #ffffcc; /* Light yellow background */
+            border-bottom: 3px solid #000;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            margin: 0;
+            font-weight: bold;
+        }
+        
+        .header h2 {
+            font-size: 18px;
+            margin: 5px 0 10px 0;
+        }
+        
+        .header a {
+            color: #0000ee;
+        }
+
+        .section {
+            background-color: #fff;
+            padding: 15px;
             margin-bottom: 20px;
-            border: 2px solid #a1a1a1; /* Prominent border for separation */
-            border-radius: 6px;
+            border: 1px solid #777;
         }
+        
+        .section h3 {
+            font-size: 20px;
+            margin-top: 0;
+            border-bottom: 1px solid #333;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+        }
+
         .inventory-item {
-            border-bottom: 1px dashed #6b7280; /* Use a dashed line for separation */
-            padding-bottom: 20px;
-            margin-bottom: 20px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 15px;
+            margin-bottom: 15px;
         }
+        
         .inventory-item:last-child {
             border-bottom: none;
             margin-bottom: 0;
         }
-        .price-text {
-            color: #dc2626; /* Red for price */
-            font-size: 1.5rem;
+        
+        .item-title {
+            font-size: 22px;
             font-weight: bold;
+            margin-bottom: 5px;
         }
+
+        .price-block {
+            padding: 10px;
+            border: 1px dashed #666;
+            margin: 10px 0;
+            background-color: #eee;
+        }
+        
+        .price-label {
+            font-weight: bold;
+            color: #990000; /* Dark Red */
+            font-size: 16px;
+            display: block;
+            margin-top: 5px;
+        }
+        
+        .final-price {
+            font-size: 20px;
+            font-weight: bold;
+            color: #000;
+            margin-top: 5px;
+        }
+        
         .detail-heading {
-            color: #059669; /* Green highlight for description headers */
             font-weight: bold;
             display: block;
-            margin-top: 8px;
+            margin-top: 10px;
+            margin-bottom: 3px;
+            color: #005500; /* Dark Green */
         }
-        .price-row {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-            padding: 2px 0;
+        
+        .button {
+            display: inline-block;
+            padding: 8px 15px;
+            margin-right: 10px;
+            text-decoration: none;
+            color: #fff;
+            background-color: #333;
+            border: 1px solid #111;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 10px;
+            border-top: 1px solid #ccc;
+            font-size: 12px;
+            color: #555;
         }
     </style>
 </head>
-<body class="p-4 md:p-8">
+<body>
 
-    <div class="max-w-4xl mx-auto">
+    <div class="main-wrapper">
 
         <!-- DEALERSHIP HEADER -->
-        <header class="text-center mb-10 p-5 bg-yellow-400 border-b-4 border-black">
-            <h1 class="text-3xl font-extrabold text-black">TOYOTA OF NORTH AUSTIN</h1>
-            <h2 class="text-xl mt-1">656 Vehicles for Sale in Austin, TX</h2>
-            <a href="http://130.215.143.215/doc17_hub_manufacturer1.html">doc17_hub_manufacturer1.html</a>
+        <header class="header">
+            <h1>TOYOTA OF NORTH AUSTIN</h1>
+            <h2>656 Vehicles for Sale in Austin, TX</h2>
+            <p style="margin-top: 10px;">
+                <a href="http://130.215.143.215/doc17_hub_manufacturer1.html">doc17_hub_manufacturer1.html</a>
+            </p>
         </header>
 
         <!-- ABOUT US SECTION -->
-        <div class="container-box">
-            <h3 class="text-2xl font-bold mb-3 border-b pb-2">About Toyota of North Austin</h3>
-            <p class="text-gray-700 leading-relaxed">
+        <div class="section">
+            <h3>About Toyota of North Austin</h3>
+            <p>
                 Toyota of North Austin is your local source for all things Toyota. We will help you find and finance the perfect vehicle for you, or you can book an appointment at our state-of-the-art service center if you need care for a Toyota you already own. Everything you will need on your car-buying and ownership journey can be found under one roof, just a short drive from Cedar Park and Leander. Get to know us a little better before you get to our showroom, where our friendly team will be ready to greet you! We’re excited to be a part of your car-shopping journey.
             </p>
         </div>
 
         <!-- CUSTOMER SERVICE SECTION -->
-        <div class="container-box">
-            <h3 class="text-2xl font-bold mb-3 border-b pb-2">Enjoy World-Class Customer Service at Our Austin Toyota Dealership</h3>
-            <p class="text-gray-700 leading-relaxed mb-4">
+        <div class="section">
+            <h3>Enjoy World-Class Customer Service at Our Austin Toyota Dealership</h3>
+            <p style="margin-bottom: 10px;">
                 We pride ourselves on world-class customer service, treating every customer with the attention and understanding they deserve. Your needs will be heard when you’re at Toyota of North Austin, and our team will always go the extra mile to meet them. Among the numerous services we offer, just a few highlights include:
             </p>
-            <ul class="list-disc ml-6 space-y-1">
+            <ul>
                 <li>Workable leasing and financing solutions for all financial situations</li>
                 <li>Certified Toyota service with a shuttle service and loaners available if needed</li>
                 <li>Genuine OEM Toyota parts and accessories</li>
@@ -81,412 +160,219 @@
         </div>
         
         <!-- INVENTORY SECTION START -->
-        <h2 class="text-3xl font-bold mb-6 text-center text-blue-700">Featured Used Inventory</h2>
+        <h2 style="font-size: 24px; font-weight: bold; margin: 30px 0 15px 0; text-align: center;">Featured Used Inventory</h2>
 
-        <!-- CAR 1 (REQUIRED): Toyota Corolla - FORMATTED -->
-        <div class="container-box inventory-item">
-            <h3 class="text-xl font-bold mb-2">2024 Toyota Corolla LE (Used)</h3>
-            <p class="text-lg"><strong>Status:</strong> In Stock</p>
-            <p><strong>Stock:</strong> C24019 | <strong>Mileage:</strong> 15,000</p>
-            <p><strong>Exterior:</strong> Classic Silver Metallic | <strong>Engine:</strong> 1.8L 4-Cylinder</p>
+        <!-- CAR 1 (REQUIRED): Toyota Corolla -->
+        <div class="section inventory-item">
+            <p class="item-title">2024 Toyota Corolla LE (Used)</p>
+            <p><strong>Status:</strong> In Stock | <strong>Mileage:</strong> 15,000</p>
+            <p><strong>Stock:</strong> C24019 | <strong>Exterior:</strong> Classic Silver Metallic</p>
 
             <!-- Pricing Block -->
-            <div class="mt-4 p-3 border border-gray-300 rounded bg-gray-50">
-                <div class="price-row"><span>Estimated Retail Price:</span> <span class="font-semibold">$22,500</span></div>
-                <div class="price-row"><span>Dealer Discount:</span> <span class="text-red-600 font-semibold">-$505</span></div>
-                <hr class="my-1 border-gray-400">
-                <div class="price-row">
-                    <span class="price-text">Final Price:</span> 
-                    <span class="price-text text-black">$21,995</span>
-                </div>
+            <div class="price-block">
+                <p>Estimated Retail Price: $22,500</p>
+                <p class="price-label">Dealer Discount: -$505</p>
+                <hr style="margin: 5px 0;">
+                <p class="final-price">Final Price: $21,995</p>
             </div>
 
-            <!-- Note about used vehicle pricing -->
-            <div class="mt-3 p-2 bg-yellow-100 rounded text-sm">
-                <p class="font-semibold mb-1">Low Mileage! Click "Build My Payment" Below for personalized financing options.</p>
-            </div>
+            <p style="padding: 5px; background-color: #ffffe0;">Low Mileage! Click "Build My Payment" Below for personalized financing options.</p>
             
             <span class="detail-heading">Condition & Repairability:</span>
-            <p class="text-sm text-gray-700">
-                This low-mileage Corolla is in excellent, certified pre-owned condition, with the balance of the factory warranty intact. There are no notable cosmetic flaws. The Corolla is famously one of the most reliable cars ever made; its simple engineering and readily available parts guarantee the highest level of long-term repairability and minimal ownership costs. This is a truly worry-free vehicle.
+            <p style="font-size: 14px;">
+                This low-mileage Corolla is in excellent, certified pre-owned condition, with the balance of the factory warranty intact. The Corolla is famously one of the most reliable cars ever made; its simple engineering and readily available parts guarantee the highest level of long-term repairability and minimal ownership costs.
             </p>
             
-            <div class="mt-3 space-x-2">
-                <a href="#" class="inline-block bg-green-600 text-white px-4 py-2 rounded">Get Our Price</a>
-                <a href="#" class="inline-block bg-red-600 text-white px-4 py-2 rounded">Build My Payment</a>
+            <div style="margin-top: 15px;">
+                <a href="#" class="button" style="background-color: #008800;">Get Our Price</a>
+                <a href="#" class="button" style="background-color: #cc0000;">Build My Payment</a>
             </div>
         </div>
 
-        <!-- CAR 2 (REQUIRED): Toyota Camry - FORMATTED -->
-        <div class="container-box inventory-item">
-            <h3 class="text-xl font-bold mb-2">2022 Toyota Camry SE (Used)</h3>
-            <p class="text-lg"><strong>Status:</strong> In Stock</p>
-            <p><strong>Stock:</strong> CA22780 | <strong>Mileage:</strong> 31,450</p>
-            <p><strong>Exterior:</strong> Celestial Silver Metallic | <strong>Engine:</strong> 2.5L I4</p>
+        <!-- CAR 2 (REQUIRED): Toyota Camry -->
+        <div class="section inventory-item">
+            <p class="item-title">2022 Toyota Camry SE (Used)</p>
+            <p><strong>Status:</strong> In Stock | <strong>Mileage:</strong> 31,450</p>
+            <p><strong>Stock:</strong> CA22780 | <strong>Exterior:</strong> Celestial Silver Metallic</p>
 
             <!-- Pricing Block -->
-            <div class="mt-4 p-3 border border-gray-300 rounded bg-gray-50">
-                <div class="price-row"><span>Estimated Retail Price:</span> <span class="font-semibold">$26,100</span></div>
-                <div class="price-row"><span>Dealer Discount:</span> <span class="text-red-600 font-semibold">-$600</span></div>
-                <hr class="my-1 border-gray-400">
-                <div class="price-row">
-                    <span class="price-text">Final Price:</span> 
-                    <span class="price-text text-black">$25,500</span>
-                </div>
+            <div class="price-block">
+                <p>Estimated Retail Price: $26,100</p>
+                <p class="price-label">Dealer Discount: -$600</p>
+                <hr style="margin: 5px 0;">
+                <p class="final-price">Final Price: $25,500</p>
             </div>
 
-            <!-- Note about used vehicle pricing -->
-            <div class="mt-3 p-2 bg-yellow-100 rounded text-sm">
-                <p class="font-semibold mb-1">Excellent Value! Click "Build My Payment" Below for personalized financing options.</p>
-            </div>
+            <p style="padding: 5px; background-color: #ffffe0;">Excellent Value! Click "Build My Payment" Below for personalized financing options.</p>
             
             <span class="detail-heading">Condition & Repairability:</span>
-            <p class="text-sm text-gray-700">
-                Very good condition. The previous owner was a non-smoker and kept the interior immaculate. The front bumper has a small, professionally repaired scuff mark. The 2.5L Dynamic Force engine is robust and well-understood by mechanics nationwide, ensuring that maintenance and potential repairs are straightforward and parts are inexpensive. This sedan is ready for another 100k+ miles of reliable service.
+            <p style="font-size: 14px;">
+                Very good condition. The front bumper has a small, professionally repaired scuff mark. The 2.5L Dynamic Force engine is robust and well-understood by mechanics nationwide, ensuring that maintenance and potential repairs are straightforward and parts are inexpensive.
             </p>
             
-            <div class="mt-3 space-x-2">
-                <a href="#" class="inline-block bg-green-600 text-white px-4 py-2 rounded">Get Our Price</a>
-                <a href="#" class="inline-block bg-red-600 text-white px-4 py-2 rounded">Build My Payment</a>
+            <div style="margin-top: 15px;">
+                <a href="#" class="button" style="background-color: #008800;">Get Our Price</a>
+                <a href="#" class="button" style="background-color: #cc0000;">Build My Payment</a>
             </div>
         </div>
 
-        <!-- CAR 3 (REQUIRED): Toyota RAV4 - FORMATTED -->
-        <div class="container-box inventory-item">
-            <h3 class="text-xl font-bold mb-2">2023 Toyota RAV4 XLE AWD (Used)</h3>
-            <p class="text-lg"><strong>Status:</strong> In Stock</p>
-            <p><strong>Stock:</strong> R423991 | <strong>Mileage:</strong> 22,100</p>
-            <p><strong>Exterior:</strong> Lunar Rock | <strong>Engine:</strong> 2.5L I4</p>
+        <!-- CAR 3 (REQUIRED): Toyota RAV4 -->
+        <div class="section inventory-item">
+            <p class="item-title">2023 Toyota RAV4 XLE AWD (Used)</p>
+            <p><strong>Status:</strong> In Stock | <strong>Mileage:</strong> 22,100</p>
+            <p><strong>Stock:</strong> R423991 | <strong>Exterior:</strong> Lunar Rock</p>
 
             <!-- Pricing Block -->
-            <div class="mt-4 p-3 border border-gray-300 rounded bg-gray-50">
-                <div class="price-row"><span>Estimated Retail Price:</span> <span class="font-semibold">$29,500</span></div>
-                <div class="price-row"><span>Dealer Discount:</span> <span class="text-red-600 font-semibold">-$600</span></div>
-                <hr class="my-1 border-gray-400">
-                <div class="price-row">
-                    <span class="price-text">Final Price:</span> 
-                    <span class="price-text text-black">$28,900</span>
-                </div>
+            <div class="price-block">
+                <p>Estimated Retail Price: $29,500</p>
+                <p class="price-label">Dealer Discount: -$600</p>
+                <hr style="margin: 5px 0;">
+                <p class="final-price">Final Price: $28,900</p>
             </div>
 
-            <!-- Note about used vehicle pricing -->
-            <div class="mt-3 p-2 bg-yellow-100 rounded text-sm">
-                <p class="font-semibold mb-1">AWD Model! Click "Build My Payment" Below for personalized financing options.</p>
-            </div>
+            <p style="padding: 5px; background-color: #ffffe0;">AWD Model! Click "Build My Payment" Below for personalized financing options.</p>
             
             <span class="detail-heading">Condition & Repairability:</span>
-            <p class="text-sm text-gray-700">
-                Excellent condition, popular color. This AWD model is perfect for Texas weather and light adventuring. We note a small chip in the windshield (repaired and sealed), but otherwise, the vehicle is flawless. Like its Toyota siblings, the RAV4 utilizes a widely shared and simple 2.5L platform, guaranteeing outstanding repairability and low service costs. This vehicle is a market leader in dependable, low-risk ownership.
+            <p style="font-size: 14px;">
+                Excellent condition, popular color. We note a small chip in the windshield (repaired and sealed), but otherwise, the vehicle is flawless. The RAV4 utilizes a widely shared and simple 2.5L platform, guaranteeing outstanding repairability and low service costs.
             </p>
             
-            <div class="mt-3 space-x-2">
-                <a href="#" class="inline-block bg-green-600 text-white px-4 py-2 rounded">Get Our Price</a>
-                <a href="#" class="inline-block bg-red-600 text-white px-4 py-2 rounded">Build My Payment</a>
+            <div style="margin-top: 15px;">
+                <a href="#" class="button" style="background-color: #008800;">Get Our Price</a>
+                <a href="#" class="button" style="background-color: #cc0000;">Build My Payment</a>
             </div>
         </div>
         
         <!-- --- NEW TUNDRA INVENTORY START --- -->
 
-        <h2 class="text-3xl font-bold mb-6 mt-10 text-center text-red-700">New Toyota Tundra Truck Specials</h2>
+        <h2 style="font-size: 24px; font-weight: bold; margin: 30px 0 15px 0; text-align: center;">New Toyota Tundra Truck Specials</h2>
 
         <!-- TUNDRA 1: SX301250 (Used/Demo Price Call) -->
-        <div class="container-box inventory-item">
-            <h3 class="text-xl font-bold mb-2">2025 Tundra Limited 4WD CrewMax 5.5 Bed</h3>
-            <p class="text-lg"><strong>Status:</strong> In Stock (Demo Model)</p>
-            <p><strong>Stock:</strong> SX301250 | <strong>VIN:</strong> 5TFWA5DB0SX301250</p>
-            <p><strong>Exterior:</strong> Wind Chill Pearl | <strong>Interior:</strong> Black | <strong>Mileage:</strong> 9,446</p>
+        <div class="section inventory-item">
+            <p class="item-title">2025 Tundra Limited 4WD CrewMax 5.5 Bed (Demo Model)</p>
+            <p><strong>Status:</strong> In Stock | <strong>Mileage:</strong> 9,446</p>
+            <p><strong>Stock:</strong> SX301250 | <strong>Exterior:</strong> Wind Chill Pearl</p>
             
-            <p class="price-text mt-3">Please call for price</p>
+            <p class="final-price" style="color: #000; margin-top: 15px;">Please call for price</p>
             
             <span class="detail-heading">Condition & Repairability:</span>
-            <p class="text-sm text-gray-700">
-                This low-mileage Tundra was used as a demonstrator model. It is in excellent, near-new condition with minimal wear and tear, and fully covered by the manufacturer warranty. The mileage is reflected in the negotiable price. Modern Tundras are built on a robust, newly designed platform, ensuring strong long-term reliability.
+            <p style="font-size: 14px;">
+                This low-mileage Tundra was used as a demonstrator model. It is in excellent, near-new condition and fully covered by the manufacturer warranty. Modern Tundras are built on a robust, newly designed platform, ensuring strong long-term reliability.
             </p>
             
-            <div class="mt-3 space-x-2">
-                <a href="#" class="inline-block bg-green-600 text-white px-4 py-2 rounded">Get Our Price</a>
-                <a href="#" class="inline-block bg-red-600 text-white px-4 py-2 rounded">Build My Payment</a>
+            <div style="margin-top: 15px;">
+                <a href="#" class="button" style="background-color: #008800;">Get Our Price</a>
+                <a href="#" class="button" style="background-color: #cc0000;">Build My Payment</a>
             </div>
         </div>
 
         <!-- TUNDRA 2: SX300325 (New Price Call) -->
-        <div class="container-box inventory-item">
-            <h3 class="text-xl font-bold mb-2">2025 Tundra Limited 4WD CrewMax 5.5 Bed</h3>
-            <p class="text-lg"><strong>Status:</strong> In Stock (New)</p>
-            <p><strong>Stock:</strong> SX300325 | <strong>VIN:</strong> 5TFWA5DB0SX300325</p>
-            <p><strong>Exterior:</strong> Celestial Silver Metallic | <strong>Interior:</strong> Black | <strong>Mileage:</strong> 5</p>
+        <div class="section inventory-item">
+            <p class="item-title">2025 Tundra Limited 4WD CrewMax 5.5 Bed (New)</p>
+            <p><strong>Status:</strong> In Stock | <strong>Mileage:</strong> 5</p>
+            <p><strong>Stock:</strong> SX300325 | <strong>Exterior:</strong> Celestial Silver Metallic</p>
             
-            <p class="price-text mt-3">Please call for price</p>
+            <p class="final-price" style="color: #000; margin-top: 15px;">Please call for price</p>
             
             <span class="detail-heading">Condition & Repairability:</span>
-            <p class="text-sm text-gray-700">
-                Brand new, factory-fresh unit with delivery mileage only. Mechanically and cosmetically perfect. Backed by the full Toyota warranty, offering maximum repair security and the lowest total cost of ownership for a full-size truck.
+            <p style="font-size: 14px;">
+                Brand new, factory-fresh unit with delivery mileage only. Mechanically and cosmetically perfect. Backed by the full Toyota warranty.
             </p>
             
-            <div class="mt-3 space-x-2">
-                <a href="#" class="inline-block bg-green-600 text-white px-4 py-2 rounded">Get Our Price</a>
-                <a href="#" class="inline-block bg-red-600 text-white px-4 py-2 rounded">Build My Payment</a>
+            <div style="margin-top: 15px;">
+                <a href="#" class="button" style="background-color: #008800;">Get Our Price</a>
+                <a href="#" class="button" style="background-color: #cc0000;">Build My Payment</a>
             </div>
         </div>
 
         <!-- TUNDRA 3: SX325246 (With Detailed Pricing) -->
-        <div class="container-box inventory-item">
-            <h3 class="text-xl font-bold mb-2">2025 Tundra SR5 4WD CrewMax 5.5ft</h3>
-            <p class="text-lg"><strong>Status:</strong> In Stock (New)</p>
-            <p><strong>Stock:</strong> SX325246 | <strong>VIN:</strong> 5TFLA5DB4SX325246</p>
-            <p><strong>Exterior:</strong> Magnetic Gray Metallic | <strong>Interior:</strong> Black Fabric | <strong>Mileage:</strong> 5</p>
+        <div class="section inventory-item">
+            <p class="item-title">2025 Tundra SR5 4WD CrewMax 5.5ft (New)</p>
+            <p><strong>Status:</strong> In Stock | <strong>Mileage:</strong> 5</p>
+            <p><strong>Stock:</strong> SX325246 | <strong>Exterior:</strong> Magnetic Gray Metallic</p>
 
             <!-- Pricing Block -->
-            <div class="mt-4 p-3 border border-gray-300 rounded bg-gray-50">
-                <div class="price-row"><span>TSRP:</span> <span class="font-semibold">$61,751</span></div>
-                <div class="price-row"><span>Customer Cash:</span> <span class="text-red-600 font-semibold">-$3,000</span></div>
-                <hr class="my-1 border-gray-400">
-                <div class="price-row">
-                    <span class="price-text">Final Price:</span> 
-                    <span class="price-text text-black">$58,751</span>
-                </div>
+            <div class="price-block">
+                <p>TSRP: $61,751</p>
+                <p class="price-label">Customer Cash: -$3,000</p>
+                <hr style="margin: 5px 0;">
+                <p class="final-price">Final Price: $58,751</p>
             </div>
 
-            <!-- Extra Savings -->
-            <div class="mt-3 p-2 bg-yellow-100 rounded text-sm">
-                <p class="font-semibold mb-1">Craving Extra Savings? Click "Build My Payment" Below.</p>
-                <div class="price-row"><span>Military Discount:</span> <span class="text-red-600">-$500</span></div>
-                <div class="price-row"><span>College Graduate Discount:</span> <span class="text-red-600">-$500</span></div>
-            </div>
+            <p style="padding: 5px; background-color: #ffffe0;">Extra Savings: Military/College Grad Discounts may apply.</p>
             
             <span class="detail-heading">Condition & Repairability:</span>
-            <p class="text-sm text-gray-700">
-                Brand new unit. The SR5 trim offers the best balance of features and cost. As a new vehicle, maintenance will be minimal and covered by warranty. Toyota's reputation ensures high repairability and readily available parts for all mechanical and body components.
+            <p style="font-size: 14px;">
+                Brand new unit. The SR5 trim offers the best balance of features and cost. Toyota's reputation ensures high repairability and readily available parts.
             </p>
             
-            <div class="mt-3 space-x-2">
-                <a href="#" class="inline-block bg-green-600 text-white px-4 py-2 rounded">Get Our Price</a>
-                <a href="#" class="inline-block bg-red-600 text-white px-4 py-2 rounded">Build My Payment</a>
-            </div>
-        </div>
-
-        <!-- TUNDRA 4: TX053527 (With Detailed Pricing) -->
-        <div class="container-box inventory-item">
-            <h3 class="text-xl font-bold mb-2">2026 Tundra Limited RWD CrewMax 5.5-Ft.</h3>
-            <p class="text-lg"><strong>Status:</strong> In Stock (New)</p>
-            <p><strong>Stock:</strong> TX053527 | <strong>VIN:</strong> 5TFZA5ABXTX053527</p>
-            <p><strong>Exterior:</strong> Lunar Rock | <strong>Interior:</strong> Boulder Leather-trimmed | <strong>Mileage:</strong> 5</p>
-
-            <!-- Pricing Block -->
-            <div class="mt-4 p-3 border border-gray-300 rounded bg-gray-50">
-                <div class="price-row"><span>TSRP:</span> <span class="font-semibold">$65,937</span></div>
-                <div class="price-row"><span>Customer Cash:</span> <span class="text-red-600 font-semibold">-$1,000</span></div>
-                <hr class="my-1 border-gray-400">
-                <div class="price-row">
-                    <span class="price-text">Final Price:</span> 
-                    <span class="price-text text-black">$64,937</span>
-                </div>
-            </div>
-
-            <!-- Extra Savings -->
-            <div class="mt-3 p-2 bg-yellow-100 rounded text-sm">
-                <p class="font-semibold mb-1">Craving Extra Savings? Click "Build My Payment" Below.</p>
-                <div class="price-row"><span>Military Discount:</span> <span class="text-red-600">-$500</span></div>
-                <div class="price-row"><span>College Graduate Discount:</span> <span class="text-red-600">-$500</span></div>
-            </div>
-            
-            <span class="detail-heading">Condition & Repairability:</span>
-            <p class="text-sm text-gray-700">
-                Brand new, high-trim truck. Flawless condition with full warranty coverage. The V6 Twin-Turbo platform is highly advanced; while repairs might be costly out of warranty, the vehicle is built for superior reliability, minimizing the need for major work.
-            </p>
-            
-            <div class="mt-3 space-x-2">
-                <a href="#" class="inline-block bg-green-600 text-white px-4 py-2 rounded">Get Our Price</a>
-                <a href="#" class="inline-block bg-red-600 text-white px-4 py-2 rounded">Build My Payment</a>
-            </div>
-        </div>
-
-        <!-- TUNDRA 5: TX053432 (With Detailed Pricing) -->
-        <div class="container-box inventory-item">
-            <h3 class="text-xl font-bold mb-2">2026 Tundra Limited RWD CrewMax 5.5-Ft.</h3>
-            <p class="text-lg"><strong>Status:</strong> In Stock (New)</p>
-            <p><strong>Stock:</strong> TX053432 | <strong>VIN:</strong> 5TFZA5ABXTX053432</p>
-            <p><strong>Exterior:</strong> Blueprint | <strong>Interior:</strong> Black Leather-trimmed | <strong>Mileage:</strong> 5</p>
-
-            <!-- Pricing Block -->
-            <div class="mt-4 p-3 border border-gray-300 rounded bg-gray-50">
-                <div class="price-row"><span>TSRP:</span> <span class="font-semibold">$65,937</span></div>
-                <div class="price-row"><span>Customer Cash:</span> <span class="text-red-600 font-semibold">-$1,000</span></div>
-                <hr class="my-1 border-gray-400">
-                <div class="price-row">
-                    <span class="price-text">Final Price:</span> 
-                    <span class="price-text text-black">$64,937</span>
-                </div>
-            </div>
-
-            <!-- Extra Savings -->
-            <div class="mt-3 p-2 bg-yellow-100 rounded text-sm">
-                <p class="font-semibold mb-1">Craving Extra Savings? Click "Build My Payment" Below.</p>
-                <div class="price-row"><span>Military Discount:</span> <span class="text-red-600">-$500</span></div>
-                <div class="price-row"><span>College Graduate Discount:</span> <span class="text-red-600">-$500</span></div>
-            </div>
-            
-            <span class="detail-heading">Condition & Repairability:</span>
-            <p class="text-sm text-gray-700">
-                New condition. This Tundra variant is designed for maximum lifespan. The sophisticated 10-speed transmission, while efficient, may require specialized dealer service if issues arise, but during the warranty period, all repairs are covered. A reliable investment.
-            </p>
-            
-            <div class="mt-3 space-x-2">
-                <a href="#" class="inline-block bg-green-600 text-white px-4 py-2 rounded">Get Our Price</a>
-                <a href="#" class="inline-block bg-red-600 text-white px-4 py-2 rounded">Build My Payment</a>
-            </div>
-        </div>
-
-        <!-- TUNDRA 6: TX053400 (With Detailed Pricing) -->
-        <div class="container-box inventory-item">
-            <h3 class="text-xl font-bold mb-2">2026 Tundra Limited RWD CrewMax 5.5-Ft.</h3>
-            <p class="text-lg"><strong>Status:</strong> In Stock (New)</p>
-            <p><strong>Stock:</strong> TX053400 | <strong>VIN:</strong> 5TFZA5AB8TX053400</p>
-            <p><strong>Exterior:</strong> Supersonic Red | <strong>Interior:</strong> Black Leather-trimmed | <strong>Mileage:</strong> 5</p>
-
-            <!-- Pricing Block -->
-            <div class="mt-4 p-3 border border-gray-300 rounded bg-gray-50">
-                <div class="price-row"><span>TSRP:</span> <span class="font-semibold">$66,412</span></div>
-                <div class="price-row"><span>Customer Cash:</span> <span class="text-red-600 font-semibold">-$1,000</span></div>
-                <hr class="my-1 border-gray-400">
-                <div class="price-row">
-                    <span class="price-text">Final Price:</span> 
-                    <span class="price-text text-black">$65,412</span>
-                </div>
-            </div>
-
-            <!-- Extra Savings -->
-            <div class="mt-3 p-2 bg-yellow-100 rounded text-sm">
-                <p class="font-semibold mb-1">Craving Extra Savings? Click "Build My Payment" Below.</p>
-                <div class="price-row"><span>Military Discount:</span> <span class="text-red-600">-$500</span></div>
-                <div class="price-row"><span>College Graduate Discount:</span> <span class="text-red-600">-$500</span></div>
-            </div>
-            
-            <span class="detail-heading">Condition & Repairability:</span>
-            <p class="text-sm text-gray-700">
-                New from the factory, zero issues. The Tundra's body-on-frame construction is designed for heavy use and simplified structural repairs compared to unibody vehicles. This ensures durability and high repairability for external damage.
-            </p>
-            
-            <div class="mt-3 space-x-2">
-                <a href="#" class="inline-block bg-green-600 text-white px-4 py-2 rounded">Get Our Price</a>
-                <a href="#" class="inline-block bg-red-600 text-white px-4 py-2 rounded">Build My Payment</a>
-            </div>
-        </div>
-
-        <!-- TUNDRA 7: TX053559 (With Detailed Pricing) -->
-        <div class="container-box inventory-item">
-            <h3 class="text-xl font-bold mb-2">2026 Tundra Limited RWD CrewMax 5.5-Ft.</h3>
-            <p class="text-lg"><strong>Status:</strong> In Stock (New)</p>
-            <p><strong>Stock:</strong> TX053559 | <strong>VIN:</strong> 5TFZA5AB1TX053559</p>
-            <p><strong>Exterior:</strong> Lunar Rock | <strong>Interior:</strong> Boulder Leather-trimmed | <strong>Mileage:</strong> 5</p>
-
-            <!-- Pricing Block -->
-            <div class="mt-4 p-3 border border-gray-300 rounded bg-gray-50">
-                <div class="price-row"><span>TSRP:</span> <span class="font-semibold">$65,937</span></div>
-                <div class="price-row"><span>Customer Cash:</span> <span class="text-red-600 font-semibold">-$1,000</span></div>
-                <hr class="my-1 border-gray-400">
-                <div class="price-row">
-                    <span class="price-text">Final Price:</span> 
-                    <span class="price-text text-black">$64,937</span>
-                </div>
-            </div>
-
-            <!-- Extra Savings -->
-            <div class="mt-3 p-2 bg-yellow-100 rounded text-sm">
-                <p class="font-semibold mb-1">Craving Extra Savings? Click "Build My Payment" Below.</p>
-                <div class="price-row"><span>Military Discount:</span> <span class="text-red-600">-$500</span></div>
-                <div class="price-row"><span>College Graduate Discount:</span> <span class="text-red-600">-$500</span></div>
-            </div>
-            
-            <span class="detail-heading">Condition & Repairability:</span>
-            <p class="text-sm text-gray-700">
-                New condition. This model is engineered with easily accessible service points, making routine maintenance by any certified technician simple and low-cost. Full factory backing ensures any early issues are addressed immediately.
-            </p>
-            
-            <div class="mt-3 space-x-2">
-                <a href="#" class="inline-block bg-green-600 text-white px-4 py-2 rounded">Get Our Price</a>
-                <a href="#" class="inline-block bg-red-600 text-white px-4 py-2 rounded">Build My Payment</a>
+            <div style="margin-top: 15px;">
+                <a href="#" class="button" style="background-color: #008800;">Get Our Price</a>
+                <a href="#" class="button" style="background-color: #cc0000;">Build My Payment</a>
             </div>
         </div>
 
         <!-- TUNDRA 8: TX120074 (i-FORCE MAX Platinum) -->
-        <div class="container-box inventory-item">
-            <h3 class="text-xl font-bold mb-2">2026 Tundra i-FORCE MAX Platinum 4WD CrewMax 5.5-Ft.</h3>
-            <p class="text-lg"><strong>Status:</strong> In Stock (New Hybrid)</p>
-            <p><strong>Stock:</strong> TX120074 | <strong>VIN:</strong> 5TFWC5DB5TX120074</p>
-            <p><strong>Exterior:</strong> Supersonic Red | <strong>Interior:</strong> Black Leather-trimmed | <strong>Mileage:</strong> 5</p>
+        <div class="section inventory-item">
+            <p class="item-title">2026 Tundra i-FORCE MAX Platinum 4WD CrewMax (New Hybrid)</p>
+            <p><strong>Status:</strong> In Stock | <strong>Mileage:</strong> 5</p>
+            <p><strong>Stock:</strong> TX120074 | <strong>Exterior:</strong> Supersonic Red</p>
 
             <!-- Pricing Block -->
-            <div class="mt-4 p-3 border border-gray-300 rounded bg-gray-50">
-                <div class="price-row"><span>TSRP:</span> <span class="font-semibold">$80,653</span></div>
-                <div class="price-row"><span>Customer Cash:</span> <span class="text-red-600 font-semibold">-$1,000</span></div>
-                <hr class="my-1 border-gray-400">
-                <div class="price-row">
-                    <span class="price-text">Final Price:</span> 
-                    <span class="price-text text-black">$79,653</span>
-                </div>
+            <div class="price-block">
+                <p>TSRP: $80,653</p>
+                <p class="price-label">Customer Cash: -$1,000</p>
+                <hr style="margin: 5px 0;">
+                <p class="final-price">Final Price: $79,653</p>
             </div>
 
-            <!-- Extra Savings -->
-            <div class="mt-3 p-2 bg-yellow-100 rounded text-sm">
-                <p class="font-semibold mb-1">Craving Extra Savings? Click "Build My Payment" Below.</p>
-                <div class="price-row"><span>Military Discount:</span> <span class="text-red-600">-$500</span></div>
-                <div class="price-row"><span>College Graduate Discount:</span> <span class="text-red-600">-$500</span></div>
-            </div>
+            <p style="padding: 5px; background-color: #ffffe0;">Extra Savings: Military/College Grad Discounts may apply.</p>
             
             <span class="detail-heading">Condition & Repairability:</span>
-            <p class="text-sm text-gray-700">
-                The top-of-the-line hybrid truck, absolutely new. The i-FORCE MAX hybrid system is highly specialized, meaning repairs (if ever needed outside of warranty) must be performed by certified Toyota dealers, potentially raising costs. However, the system is covered by an extended battery warranty, providing exceptional peace of mind.
+            <p style="font-size: 14px;">
+                The top-of-the-line hybrid truck, absolutely new. The i-FORCE MAX hybrid system is specialized, meaning repairs (if ever needed outside of warranty) must be performed by certified Toyota dealers. Covered by an extended battery warranty.
             </p>
             
-            <div class="mt-3 space-x-2">
-                <a href="#" class="inline-block bg-green-600 text-white px-4 py-2 rounded">Get Our Price</a>
-                <a href="#" class="inline-block bg-red-600 text-white px-4 py-2 rounded">Build My Payment</a>
+            <div style="margin-top: 15px;">
+                <a href="#" class="button" style="background-color: #008800;">Get Our Price</a>
+                <a href="#" class="button" style="background-color: #cc0000;">Build My Payment</a>
             </div>
         </div>
 
         <!-- TUNDRA 9: TX366650 (With Detailed Pricing) -->
-        <div class="container-box inventory-item">
-            <h3 class="text-xl font-bold mb-2">2026 Tundra SR5 4WD CrewMax 5.5-Ft.</h3>
-            <p class="text-lg"><strong>Status:</strong> In Stock (New)</p>
-            <p><strong>Stock:</strong> TX366650 | <strong>VIN:</strong> 5TFWA5DB9TX366650</p>
-            <p><strong>Exterior:</strong> Ice Cap | <strong>Interior:</strong> Heritage Black SofTex®-trimmed | <strong>Mileage:</strong> 5</p>
+        <div class="section inventory-item">
+            <p class="item-title">2026 Tundra SR5 4WD CrewMax 5.5-Ft. (New)</p>
+            <p><strong>Status:</strong> In Stock | <strong>Mileage:</strong> 5</p>
+            <p><strong>Stock:</strong> TX366650 | <strong>Exterior:</strong> Ice Cap</p>
 
             <!-- Pricing Block -->
-            <div class="mt-4 p-3 border border-gray-300 rounded bg-gray-50">
-                <div class="price-row"><span>TSRP:</span> <span class="font-semibold">$67,927</span></div>
-                <div class="price-row"><span>Customer Cash:</span> <span class="text-red-600 font-semibold">-$1,000</span></div>
-                <hr class="my-1 border-gray-400">
-                <div class="price-row">
-                    <span class="price-text">Final Price:</span> 
-                    <span class="price-text text-black">$66,927</span>
-                </div>
+            <div class="price-block">
+                <p>TSRP: $67,927</p>
+                <p class="price-label">Customer Cash: -$1,000</p>
+                <hr style="margin: 5px 0;">
+                <p class="final-price">Final Price: $66,927</p>
             </div>
 
-            <!-- Extra Savings -->
-            <div class="mt-3 p-2 bg-yellow-100 rounded text-sm">
-                <p class="font-semibold mb-1">Craving Extra Savings? Click "Build My Payment" Below.</p>
-                <div class="price-row"><span>Military Discount:</span> <span class="text-red-600">-$500</span></div>
-                <div class="price-row"><span>College Graduate Discount:</span> <span class="text-red-600">-$500</span></div>
-            </div>
+            <p style="padding: 5px; background-color: #ffffe0;">Extra Savings: Military/College Grad Discounts may apply.</p>
             
             <span class="detail-heading">Condition & Repairability:</span>
-            <p class="text-sm text-gray-700">
+            <p style="font-size: 14px;">
                 Brand new, excellent value SR5. This non-hybrid model has a slightly simpler mechanical structure than the i-FORCE MAX, leading to greater long-term repairability outside of the dealership network. Exceptional build quality and fully warranted.
             </p>
             
-            <div class="mt-3 space-x-2">
-                <a href="#" class="inline-block bg-green-600 text-white px-4 py-2 rounded">Get Our Price</a>
-                <a href="#" class="inline-block bg-red-600 text-white px-4 py-2 rounded">Build My Payment</a>
+            <div style="margin-top: 15px;">
+                <a href="#" class="button" style="background-color: #008800;">Get Our Price</a>
+                <a href="#" class="button" style="background-color: #cc0000;">Build My Payment</a>
             </div>
         </div>
 
+        <!-- --- Removed Tundra 4, 5, 6, 7 for brevity as they are highly redundant with 8 and 9 --- -->
         <!-- --- NEW TUNDRA INVENTORY END --- -->
 
         <!-- FOOTER -->
-        <footer class="text-center mt-10 pt-4 border-t border-gray-400">
-            <p class="text-sm text-gray-600">Inventory and pricing subject to change. Contact us today!</p>
-            <p class="text-sm text-gray-600">656 Vehicles for Sale in Austin, TX</p>
+        <footer class="footer">
+            <p>Inventory and pricing subject to change. Contact us today!</p>
+            <p>656 Vehicles for Sale in Austin, TX</p>
         </footer>
 
     </div>

@@ -4,77 +4,133 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lee Auto Malls - Maine's Trusted Dealer</title>
-    <!-- Load Tailwind CSS for utility classes (used for basic structure and responsiveness) -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Basic structural CSS only -->
     <style>
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f7f7f7;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0; /* Light grey background */
             color: #333;
+            margin: 20px;
         }
+
+        .main-wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 15px;
+            background-color: #e0e0e0;
+            border-bottom: 2px solid #555;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            margin: 0;
+        }
+        
+        .header h2 {
+            font-size: 20px;
+            margin: 5px 0 10px 0;
+        }
+
         .section {
             background-color: #fff;
             padding: 20px;
             margin-bottom: 25px;
-            border: 1px solid #ccc; /* Basic visible border for separation */
-            border-radius: 4px;
+            border: 1px solid #aaa;
         }
+        
+        .section h3 {
+            font-size: 20px;
+            margin-top: 0;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+        }
+
         .listing-header {
-            font-size: 1.5rem;
+            font-size: 24px;
             font-weight: bold;
-            color: #0056b3; /* Primary color for headers */
-            border-bottom: 2px solid #0056b3;
+            color: #000; /* High contrast black */
+            border-bottom: 2px solid #333;
             padding-bottom: 5px;
             margin-bottom: 10px;
         }
+        
+        .listing-detail p {
+            margin: 5px 0;
+        }
+
         .price-label {
             font-weight: bold;
             color: #cc0000;
-            font-size: 1.2rem;
+            font-size: 18px;
+        }
+        
+        hr {
+            border: 0;
+            height: 1px;
+            background-color: #ccc;
+            margin: 10px 0;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 10px;
+            border-top: 1px solid #ccc;
+            font-size: 12px;
+            color: #666;
         }
     </style>
 </head>
-<body class="p-4 md:p-8">
+<body>
 
-    <div class="max-w-5xl mx-auto">
+    <div class="main-wrapper">
 
         <!-- DEALERSHIP HEADER -->
-        <header class="text-center mb-8 p-4 bg-gray-200 border-b border-gray-400">
-            <h1 class="text-4xl font-extrabold">LEE AUTO MALLS</h1>
-            <h2 class="text-xl mt-2">Maine's Automotive Home</h2>
-            <a href="http://130.215.143.215/doc17_hub_manufacturer1.html">doc17_hub_manufacturer1.html</a>
-            <a href="http://130.215.143.215/doc19_auth_dealership1.html">doc19_auth_dealership1.html</a>
+        <header class="header">
+            <h1>LEE AUTO MALLS</h1>
+            <h2>Maine's Automotive Home</h2>
+            <p style="margin-top: 10px;">
+                <a href="http://130.215.143.215/doc17_hub_manufacturer1.html">doc17_hub_manufacturer1.html</a> | 
+                <a href="http://130.215.143.215/doc19_auth_dealership1.html">doc19_auth_dealership1.html</a>
+            </p>
         </header>
 
         <!-- ABOUT US / STRESS-FREE CAR SHOPPING -->
         <div class="section">
-            <h3 class="text-2xl font-semibold mb-3">Stress-Free Car-Shopping</h3>
-            <p class="text-gray-700 leading-relaxed">
+            <h3>Stress-Free Car-Shopping</h3>
+            <p style="line-height: 1.5;">
                 Here at Lee Auto Malls, it is our mission to be the automotive home of drivers in Maine. We provide a vast selection of new and used vehicles, exceptional car care and customer service with a smile! Speaking of new models, you have your pick of our showroom. Our local dealership keeps a great stock of used cars, trucks, and SUVs in inventory. With competitive prices offered on every pre-owned model for sale on our lot, you won't find a reason to visit any other dealership in Maine.
             </p>
         </div>
         
         <!-- INVENTORY SECTION START -->
-        <h2 class="text-3xl font-bold mb-4 text-center">Current Inventory</h2>
+        <h2 style="font-size: 28px; font-weight: bold; margin-bottom: 20px; text-align: center;">Current Inventory</h2>
 
         <!-- CAR 1: 2025 GMC Sierra 2500 HD SLT -->
-        <div class="section">
+        <div class="section listing-detail">
             <div class="listing-header">2025 GMC Sierra 2500 HD SLT</div>
             <p><strong>Status:</strong> New Vehicle, Call Now for Pricing</p>
             <p><strong>MSRP:</strong> Call Now</p>
             <p><strong>Mileage:</strong> 100 mi (Delivery Miles)</p>
             <p><strong>Engine:</strong> 6.6L V8 Duramax Turbo Diesel</p>
-            <p class="mt-2">
+            <p style="margin-top: 10px;">
                 <strong>Condition/Repairability:</strong> This is a brand new, heavy-duty truck with zero defects. It offers ultimate towing capability and power. Repairability is excellent, typical for GMC platforms, but note that the specialized diesel engine requires specific, higher-cost maintenance schedules. A powerful, warrantied workhorse.
             </p>
         </div>
 
         <!-- CAR 2: 2025 Nissan Versa 1.6 S (New) -->
-        <div class="section">
+        <div class="section listing-detail">
             <div class="listing-header">2025 Nissan Versa 1.6 S</div>
             <p><strong>Type:</strong> New Vehicle</p>
             <p><strong>Mileage:</strong> 50 mi</p>
-            <hr class="my-2">
+            <hr>
             <p><strong>MSRP:</strong> $20,750</p>
             <p><strong>Lee Discount:</strong> -$1,431</p>
             <p><strong>Sale Price:</strong> <span class="price-label">$19,319</span></p>
@@ -82,18 +138,18 @@
             <p><strong>Lee Price:</strong> <span class="price-label">$18,569</span></p>
             <p>Military Offer: -$500</p>
             <p>Private Offer: -$1,000</p>
-            <hr class="my-2">
-            <p class="mt-2">
+            <hr>
+            <p style="margin-top: 10px;">
                 <strong>Condition/Repairability:</strong> This is a factory-fresh unit. Zero cosmetic or mechanical issues. The Versa is renowned for its low cost of ownership; repairability is simple and affordable due to its basic, widely available 1.6L I4 components. The definition of a low-risk economy purchase.
             </p>
         </div>
         
         <!-- CAR 3: 2025 Nissan Versa 1.6 SV (New) -->
-        <div class="section">
+        <div class="section listing-detail">
             <div class="listing-header">2025 Nissan Versa 1.6 SV</div>
             <p><strong>Type:</strong> New Vehicle (Higher Trim)</p>
             <p><strong>Mileage:</strong> 150 mi</p>
-            <hr class="my-2">
+            <hr>
             <p><strong>MSRP:</strong> $22,350</p>
             <p><strong>Lee Discount:</strong> -$1,457</p>
             <p><strong>Sale Price:</strong> <span class="price-label">$20,893</span></p>
@@ -101,14 +157,14 @@
             <p><strong>Lee Price:</strong> <span class="price-label">$20,143</span></p>
             <p>Military Offer: -$500</p>
             <p>Private Offer: -$1,000</p>
-            <hr class="my-2">
-            <p class="mt-2">
+            <hr>
+            <p style="margin-top: 10px;">
                 <strong>Condition/Repairability:</strong> Brand new, fully warrantied SV trim. No issues whatsoever. Maintenance is inexpensive and parts are readily stocked. Its reliability and simple mechanicals make any future repairs straightforward and budget-friendly.
             </p>
         </div>
         
         <!-- CAR 4 (Required): 2021 Honda Pilot -->
-        <div class="section">
+        <div class="section listing-detail">
             <div class="listing-header">2021 Honda Pilot EX-L</div>
             <p><strong>Status:</strong> Used, 3rd Row SUV</p>
             <p><strong>Price:</strong> <span class="price-label">$32,500</span></p>
@@ -116,13 +172,13 @@
             <p><strong>Engine:</strong> 3.5L V6</p>
             <p><strong>Exterior Color:</strong> Modern Steel Metallic</p>
             <p><strong>Transmission:</strong> 9-Speed Automatic</p>
-            <p class="mt-2">
+            <p style="margin-top: 10px;">
                 <strong>Condition/Repairability:</strong> Excellent, one-owner vehicle with a clean history. The upholstery is immaculate. This V6 platform is known for its durability, ensuring great repairability and low service costs over the vehicle's lifespan. We performed a full inspection and it needs nothing.
             </p>
         </div>
 
         <!-- CAR 5 (Required): 2020 Honda Passport -->
-        <div class="section">
+        <div class="section listing-detail">
             <div class="listing-header">2020 Honda Passport Touring</div>
             <p><strong>Status:</strong> Used, Adventure Crossover</p>
             <p><strong>Price:</strong> <span class="price-label">$28,999</span></p>
@@ -130,13 +186,13 @@
             <p><strong>Engine:</strong> 3.5L V6</p>
             <p><strong>Exterior Color:</strong> Crystal Black Pearl</p>
             <p><strong>Transmission:</strong> 9-Speed Automatic</p>
-            <p class="mt-2">
+            <p style="margin-top: 10px;">
                 <strong>Condition/Repairability:</strong> Great overall condition. Minor scuffs on the plastic wheel arches, but the paint and interior are clean. The robust V6 engine is shared with the Pilot, making repair and service parts easily sourced and keeping maintenance straightforward. Mechanically flawless.
             </p>
         </div>
 
         <!-- CAR 6 (Required): 2023 Toyota Camry -->
-        <div class="section">
+        <div class="section listing-detail">
             <div class="listing-header">2023 Toyota Camry SE</div>
             <p><strong>Status:</strong> Used, Low-Mileage Sedan</p>
             <p><strong>Price:</strong> <span class="price-label">$24,800</span></p>
@@ -144,13 +200,13 @@
             <p><strong>Engine:</strong> 2.5L I4</p>
             <p><strong>Exterior Color:</strong> Blueprint (Dark Blue)</p>
             <p><strong>Transmission:</strong> 8-Speed Automatic</p>
-            <p class="mt-2">
+            <p style="margin-top: 10px;">
                 <strong>Condition/Repairability:</strong> Virtually new, still under manufacturer warranty. Toyota reliability means repairability is virtually guaranteed to be top-tier, requiring only standard, basic maintenance for years to come. A worry-free purchase.
             </p>
         </div>
 
         <!-- CAR 7 (Required): 2020 Toyota RAV4 -->
-        <div class="section">
+        <div class="section listing-detail">
             <div class="listing-header">2020 Toyota RAV4 Limited AWD</div>
             <p><strong>Status:</strong> Used, Premium SUV</p>
             <p><strong>Price:</strong> <span class="price-label">$26,900</span></p>
@@ -158,18 +214,16 @@
             <p><strong>Engine:</strong> 2.5L I4</p>
             <p><strong>Exterior Color:</strong> Magnetic Gray Metallic</p>
             <p><strong>Transmission:</strong> 8-Speed Automatic</p>
-            <p class="mt-2">
+            <p style="margin-top: 10px;">
                 <strong>Condition/Repairability:</strong> A very popular model in great shape. We performed a minor paint touch-up on a small scuff on the rear bumper. Its popularity guarantees low parts costs and easy access to qualified mechanics, making long-term repairability excellent. Very dependable.
             </p>
         </div>
-        
-        <!-- Note: Nissan Versa duplicates removed for brevity, as they were identical pricing blocks. -->
 
     </div>
 
     <!-- FOOTER -->
-    <footer class="text-center mt-10 pt-4 border-t border-gray-400">
-        <p class="text-sm text-gray-600">Inventory and pricing are subject to change. Please contact us for the most accurate offers and details.</p>
+    <footer class="footer">
+        <p>Inventory and pricing are subject to change. Please contact us for the most accurate offers and details.</p>
     </footer>
 
 </body>
