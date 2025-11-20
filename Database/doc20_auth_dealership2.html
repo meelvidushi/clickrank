@@ -4,299 +4,406 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Midstate Auto Group</title>
-    <!-- Load Tailwind CSS for utility classes (used for basic structure and responsiveness) -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Basic structural CSS only -->
     <style>
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4; /* Very light grey */
+            color: #333;
         }
-        /* Basic styling override to look "basic" and maximize contrast/readability */
-        .car-listing {
-            border: 1px solid #333;
-            margin-bottom: 20px;
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ccc;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #333;
+        }
+
+        .header h1 {
+            font-size: 28px;
+            margin: 0 0 5px 0;
+        }
+        
+        .header p {
+            margin: 3px 0;
+            font-size: 16px;
+        }
+
+        .section {
+            margin-bottom: 30px;
             padding: 15px;
-            border-radius: 8px;
+            border: 1px solid #ddd;
+            background-color: #fff;
+        }
+        
+        .section h2 {
+            font-size: 22px;
+            margin-top: 0;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+        }
+        
+        .section h3 {
+            font-size: 18px;
+            margin: 10px 0;
+        }
+
+        .inventory-tools-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .tool-item {
+            padding: 8px 12px;
+            border: 1px solid #333;
+            background-color: #eee;
+            text-align: center;
+            flex: 1 1 180px; /* Simple responsive behavior without media queries */
+            font-size: 14px;
+        }
+        
+        .badge {
+            display: inline-block;
+            background-color: #e0f7fa; /* Light blue */
+            color: #006064; /* Dark teal */
+            padding: 4px 8px;
+            margin-right: 5px;
+            font-size: 12px;
+            border: 1px solid #b2ebf2;
+        }
+
+        .car-listing {
+            border: 2px solid #000; /* High contrast border */
+            margin-bottom: 25px;
+            padding: 15px;
+            background-color: #fff;
+        }
+        
+        .car-listing h3 {
+            font-size: 20px;
+            margin: 0 0 5px 0;
+        }
+        
+        .car-listing p {
+            margin: 3px 0;
+        }
+        
+        .price-highlight {
+            color: #cc0000; /* Basic red */
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        hr {
+            border: 0;
+            height: 1px;
+            background-color: #ccc;
+            margin: 10px 0;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 10px;
+            border-top: 1px solid #ccc;
+            font-size: 10px;
+            color: #666;
         }
     </style>
 </head>
-<body class="bg-gray-100 p-4 md:p-8">
+<body>
 
-    <!-- HEADER & CONTACT INFO -->
-    <div class="max-w-4xl mx-auto text-center mb-8 p-4 bg-white shadow-lg rounded-lg">
-        <h1 class="text-3xl font-bold mb-1">MIDSTATE AUTO GROUP</h1>
-        <a href="http://130.215.143.215/doc18_auth_dealership0.html">doc18_auth_dealership0.html</a>
-        <p class="text-lg">810 WASHINGTON ST</p>
-        <p class="text-lg">Auburn, MA 01501</p>
-        <p class="text-xl font-semibold mt-2">(508) 832-8886</p>
-    </div>
-
-    <!-- ABOUT US SECTION -->
-    <div class="max-w-4xl mx-auto mb-10 p-4 bg-white shadow-lg rounded-lg">
-        <h2 class="text-2xl font-semibold mb-2 border-b pb-1">About Us</h2>
-        <h3 class="text-xl font-medium mb-2">Serving Our Friends and Neighbors in Auburn</h3>
-        <p class="text-gray-700 leading-relaxed">
-            At Midstate Mitsubishi, we're more than just a car dealership in Auburn. We're also members of the greater Charlton MA, Southbridge MA, Worcester MA and Webster MA communities, who work and live here just like you, and we want only what's best for our neighbors. We strive to support community initiatives and events, and we're committed to delivering the best customer service around, from new Mitsubishi sales, to used vehicles, to finance and service. We provide the best of the best to all our customers.
-        </p>
-    </div>
-
-    <!-- INVENTORY FILTERS/ACTIONS -->
-    <div class="max-w-4xl mx-auto mb-10 p-4 bg-white shadow-lg rounded-lg">
-        <h2 class="text-2xl font-semibold mb-4 border-b pb-1">Inventory Tools</h2>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm font-medium">
-            <div class="p-2 border rounded">Sort</div>
-            <div class="p-2 border rounded">Filter Inventory</div>
-            <div class="p-2 border rounded">Condition</div>
-            <div class="p-2 border rounded">Body Style</div>
-            <div class="p-2 border rounded">Make</div>
-            <div class="p-2 border rounded">Model</div>
-            <div class="p-2 border rounded">Max Price</div>
-            <div class="p-2 border rounded">Max Mileage</div>
-            <div class="p-2 border rounded">Available/Sold</div>
+    <div class="container">
+        <!-- HEADER & CONTACT INFO -->
+        <div class="header">
+            <h1>MIDSTATE AUTO GROUP</h1>
+            <a href="http://130.215.143.215/doc18_auth_dealership0.html">doc18_auth_dealership0.html</a>
+            <p>810 WASHINGTON ST</p>
+            <p>Auburn, MA 01501</p>
+            <p style="font-size: 18px; font-weight: bold; margin-top: 10px;">(508) 832-8886</p>
         </div>
-        <div class="mt-4 flex flex-wrap gap-3">
-            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded text-sm">Virtual Appointments</span>
-            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded text-sm">Virtual Financing</span>
-            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded text-sm">Online Paperwork</span>
-        </div>
-    </div>
 
-    <!-- INVENTORY LISTINGS -->
-    <div class="max-w-4xl mx-auto">
-        <h2 class="text-3xl font-bold mb-6 text-center">Current Vehicle Inventory</h2>
-        
-        <!-- Car Listing 1: 2019 Chevrolet Silverado 1500 -->
-        <div class="car-listing bg-white">
-            <h3 class="text-xl font-bold">2019 Chevrolet Silverado 1500</h3>
-            <p class="text-lg">for sale at Midstate Auto Group in Auburn MA</p>
-            <p class="text-sm text-gray-600">CREW CAB</p>
-            <hr class="my-3">
-            <p><b>Price:</b> <span class="text-red-600 font-bold text-xl">$35,777</span></p>
-            <p><b>Mileage:</b> 75,419</p>
-            <p><b>Engine:</b> 5.3L V8</p>
-            <p><b>Exterior Color:</b> White</p>
-            <p><b>Transmission:</b> Automatic 8-Speed</p>
-            <p><b>Drivetrain:</b> 4X4</p>
-            <p><b>Fuel Economy:</b> N/A</p>
-            <hr class="my-3">
-            <p class="mt-2">
-                <b>Condition/Repairability:</b> This truck is in generally good condition with a rugged chassis ready for work. There are minor body scratches typical for its age and use. Repairability is high due to the common availability of parts for this popular V8 platform. It will require a routine fluid flush upon purchase, but no major repairs are pending.
+        <!-- ABOUT US SECTION -->
+        <div class="section">
+            <h2>About Us</h2>
+            <h3>Serving Our Friends and Neighbors in Auburn</h3>
+            <p>
+                At Midstate Mitsubishi, we're more than just a car dealership in Auburn. We're also members of the greater Charlton MA, Southbridge MA, Worcester MA and Webster MA communities, who work and live here just like you, and we want only what's best for our neighbors. We strive to support community initiatives and events, and we're committed to delivering the best customer service around, from new Mitsubishi sales, to used vehicles, to finance and service. We provide the best of the best to all our customers.
             </p>
         </div>
 
-        <!-- Car Listing 2: 2023 Dodge Durango GT Plus -->
-        <div class="car-listing bg-white">
-            <h3 class="text-xl font-bold">2023 Dodge Durango GT Plus</h3>
-            <p class="text-lg">for sale at Midstate Auto Group in Auburn MA</p>
-            <p class="text-sm text-gray-600">AWD GT Plus 4dr SUV</p>
-            <hr class="my-3">
-            <p><b>Price:</b> <span class="text-red-600 font-bold text-xl">$34,777</span></p>
-            <p><b>Mileage:</b> 42,743</p>
-            <p><b>Engine:</b> 3.6L V6</p>
-            <p><b>Exterior Color:</b> Destroyer Grey Clear Coat</p>
-            <p><b>Transmission:</b> Automatic 8-Speed</p>
-            <p><b>Drivetrain:</b> AWD</p>
-            <p><b>Fuel Economy:</b> 18 city / 25 hwy</p>
-            <hr class="my-3">
-            <p class="mt-2">
-                <b>Condition/Repairability:</b> This Durango is in excellent, near-new condition, benefiting from professional maintenance records. The V6 engine and AWD system are mechanically sound. Immediate repair needs are low. While repairability is standard, its high-tech components might require specialized (and potentially costlier) service down the line.
-            </p>
+        <!-- INVENTORY FILTERS/ACTIONS -->
+        <div class="section">
+            <h2>Inventory Tools</h2>
+            <div class="inventory-tools-grid">
+                <div class="tool-item">Sort</div>
+                <div class="tool-item">Filter Inventory</div>
+                <div class="tool-item">Condition</div>
+                <div class="tool-item">Body Style</div>
+                <div class="tool-item">Make</div>
+                <div class="tool-item">Model</div>
+                <div class="tool-item">Max Price</div>
+                <div class="tool-item">Max Mileage</div>
+                <div class="tool-item">Available/Sold</div>
+            </div>
+            <div style="margin-top: 15px;">
+                <span class="badge">Virtual Appointments</span>
+                <span class="badge">Virtual Financing</span>
+                <span class="badge">Online Paperwork</span>
+            </div>
         </div>
 
-        <!-- Car Listing 3: 2020 Ford F-150 King Ranch -->
-        <div class="car-listing bg-white">
-            <h3 class="text-xl font-bold">2020 Ford F-150 King Ranch</h3>
-            <p class="text-lg">for sale at Midstate Auto Group in Auburn MA</p>
-            <p class="text-sm text-gray-600">4x4 King Ranch 4dr SuperCrew 5.5 ft. SB</p>
-            <hr class="my-3">
-            <p><b>Price:</b> <span class="text-red-600 font-bold text-xl">$38,277</span></p>
-            <p><b>Mileage:</b> 68,466</p>
-            <p><b>Engine:</b> 5.0L V8 (Determined by inspection)</p>
-            <p><b>Exterior Color:</b> White</p>
-            <p><b>Transmission:</b> Automatic 10-Speed</p>
-            <p><b>Drivetrain:</b> 4X4</p>
-            <p><b>Fuel Economy:</b> N/A</p>
-            <hr class="my-3">
-            <p class="mt-2">
-                <b>Condition/Repairability:</b> A solid work and luxury truck. The King Ranch interior leather shows expected signs of wear, but the body is clean. This vehicle passed a rigorous mechanical inspection, and its powertrain is strong. Its common V8 engine platform ensures good long-term reliability and straightforward, affordable maintenance.
-            </p>
+        <!-- INVENTORY LISTINGS -->
+        <div>
+            <h2 style="font-size: 24px; text-align: center; margin-bottom: 20px;">Current Vehicle Inventory</h2>
+            
+            <!-- Car Listing 1: 2019 Chevrolet Silverado 1500 -->
+            <div class="car-listing">
+                <h3>2019 Chevrolet Silverado 1500</h3>
+                <p>for sale at Midstate Auto Group in Auburn MA</p>
+                <p style="font-size: 14px; color: #666;">CREW CAB</p>
+                <hr>
+                <p><b>Price:</b> <span class="price-highlight">$35,777</span></p>
+                <p><b>Mileage:</b> 75,419</p>
+                <p><b>Engine:</b> 5.3L V8</p>
+                <p><b>Exterior Color:</b> White</p>
+                <p><b>Transmission:</b> Automatic 8-Speed</p>
+                <p><b>Drivetrain:</b> 4X4</p>
+                <p><b>Fuel Economy:</b> N/A</p>
+                <hr>
+                <p style="margin-top: 10px;">
+                    <b>Condition/Repairability:</b> This truck is in generally good condition with a rugged chassis ready for work. There are minor body scratches typical for its age and use. Repairability is high due to the common availability of parts for this popular V8 platform. It will require a routine fluid flush upon purchase, but no major repairs are pending.
+                </p>
+            </div>
+
+            <!-- Car Listing 2: 2023 Dodge Durango GT Plus -->
+            <div class="car-listing">
+                <h3>2023 Dodge Durango GT Plus</h3>
+                <p>for sale at Midstate Auto Group in Auburn MA</p>
+                <p style="font-size: 14px; color: #666;">AWD GT Plus 4dr SUV</p>
+                <hr>
+                <p><b>Price:</b> <span class="price-highlight">$34,777</span></p>
+                <p><b>Mileage:</b> 42,743</p>
+                <p><b>Engine:</b> 3.6L V6</p>
+                <p><b>Exterior Color:</b> Destroyer Grey Clear Coat</p>
+                <p><b>Transmission:</b> Automatic 8-Speed</p>
+                <p><b>Drivetrain:</b> AWD</p>
+                <p><b>Fuel Economy:</b> 18 city / 25 hwy</p>
+                <hr>
+                <p style="margin-top: 10px;">
+                    <b>Condition/Repairability:</b> This Durango is in excellent, near-new condition, benefiting from professional maintenance records. The V6 engine and AWD system are mechanically sound. Immediate repair needs are low. While repairability is standard, its high-tech components might require specialized (and potentially costlier) service down the line.
+                </p>
+            </div>
+
+            <!-- Car Listing 3: 2020 Ford F-150 King Ranch -->
+            <div class="car-listing">
+                <h3>2020 Ford F-150 King Ranch</h3>
+                <p>for sale at Midstate Auto Group in Auburn MA</p>
+                <p style="font-size: 14px; color: #666;">4x4 King Ranch 4dr SuperCrew 5.5 ft. SB</p>
+                <hr>
+                <p><b>Price:</b> <span class="price-highlight">$38,277</span></p>
+                <p><b>Mileage:</b> 68,466</p>
+                <p><b>Engine:</b> 5.0L V8 (Determined by inspection)</p>
+                <p><b>Exterior Color:</b> White</p>
+                <p><b>Transmission:</b> Automatic 10-Speed</p>
+                <p><b>Drivetrain:</b> 4X4</p>
+                <p><b>Fuel Economy:</b> N/A</p>
+                <hr>
+                <p style="margin-top: 10px;">
+                    <b>Condition/Repairability:</b> A solid work and luxury truck. The King Ranch interior leather shows expected signs of wear, but the body is clean. This vehicle passed a rigorous mechanical inspection, and its powertrain is strong. Its common V8 engine platform ensures good long-term reliability and straightforward, affordable maintenance.
+                </p>
+            </div>
+
+            <!-- Car Listing 4: 2023 Hyundai Tucson Hybrid -->
+            <div class="car-listing">
+                <h3>2023 Hyundai Tucson Hybrid Blue</h3>
+                <p>for sale at Midstate Auto Group in Auburn MA</p>
+                <p style="font-size: 14px; color: #666;">AWD Blue 4dr SUV</p>
+                <hr>
+                <p><b>Price:</b> <span class="price-highlight">$22,577</span></p>
+                <p><b>Mileage:</b> 51,480</p>
+                <p><b>Engine:</b> 1.6L I4</p>
+                <p><b>Exterior Color:</b> Amazon Gray Metallic</p>
+                <p><b>Transmission:</b> Automatic 6-Speed</p>
+                <p><b>Drivetrain:</b> AWD</p>
+                <p><b>Fuel Economy:</b> 38 city / 38 hwy</p>
+                <hr>
+                <p style="margin-top: 10px;">
+                    <b>Condition/Repairability:</b> Pristine condition with excellent fuel economy. The hybrid system is still under substantial factory warranty, minimizing risk for the buyer. This vehicle requires only standard maintenance (oil changes, etc.). No known defects; a great, low-risk purchase.
+                </p>
+            </div>
+
+            <!-- Car Listing 5: 2024 Hyundai Elantra -->
+            <div class="car-listing">
+                <h3>2024 Hyundai Elantra SEL</h3>
+                <p>for sale at Midstate Auto Group in Auburn MA</p>
+                <p style="font-size: 14px; color: #666;">SEL 4dr Sedan</p>
+                <hr>
+                <p><b>Price:</b> <span class="price-highlight">$21,777</span></p>
+                <p><b>Mileage:</b> 8,547</p>
+                <p><b>Engine:</b> 2.0L I4</p>
+                <p><b>Exterior Color:</b> Amazon Gray Pearl</p>
+                <p><b>Transmission:</b> CVT</p>
+                <p><b>Drivetrain:</b> FWD</p>
+                <p><b>Fuel Economy:</b> 32 city / 41 hwy</p>
+                <hr>
+                <p style="margin-top: 10px;">
+                    <b>Condition/Repairability:</b> This vehicle is essentially new with extremely low mileage. It is still fully covered by the manufacturer's warranty. There are zero known defects or repair concerns. It is the definition of a worry-free purchase.
+                </p>
+            </div>
+
+            <!-- Car Listing 6: 2021 Hyundai Kona -->
+            <div class="car-listing">
+                <h3>2021 Hyundai Kona SEL</h3>
+                <p>for sale at Midstate Auto Group in Auburn MA</p>
+                <p style="font-size: 14px; color: #666;">AWD SEL 4dr Crossover</p>
+                <hr>
+                <p><b>Price:</b> <span class="price-highlight">$18,777</span></p>
+                <p><b>Mileage:</b> 66,636</p>
+                <p><b>Engine:</b> 2.0L I4</p>
+                <p><b>Exterior Color:</b> Ultra Black</p>
+                <p><b>Transmission:</b> Automatic 6-Speed</p>
+                <p><b>Drivetrain:</b> AWD</p>
+                <p><b>Fuel Economy:</b> 25 city / 30 hwy</p>
+                <hr>
+                <p style="margin-top: 10px;">
+                    <b>Condition/Repairability:</b> A solid commuter and urban crossover. It has minor cosmetic dents on the driver side door, reflected in the low price. Mechanically, the engine is reliable and robust. Due to its small size and common parts, the Kona offers a low cost of ownership and very easy maintenance.
+                </p>
+            </div>
+
+            <!-- Car Listing 7 (Added): 2020 Honda CR-V -->
+            <div class="car-listing">
+                <h3>2020 Honda CR-V EX-L</h3>
+                <p>New Arrival at Midstate Auto Group</p>
+                <p style="font-size: 14px; color: #666;">FWD EX-L 4dr SUV</p>
+                <hr>
+                <p><b>Price:</b> <span class="price-highlight">$24,995</span></p>
+                <p><b>Mileage:</b> 45,120</p>
+                <p><b>Engine:</b> 1.5L I4 Turbo</p>
+                <p><b>Exterior Color:</b> Lunar Silver Metallic</p>
+                <p><b>Transmission:</b> CVT</p>
+                <p><b>Drivetrain:</b> FWD</p>
+                <p><b>Fuel Economy:</b> 28 city / 34 hwy</p>
+                <hr>
+                <p style="margin-top: 10px;">
+                    <b>Condition/Repairability:</b> This CR-V is an ex-lease vehicle, extremely clean with full service records, well-maintained by the previous owner. It is known for its legendary reliability and simple engineering, ensuring great long-term repairability and low service costs. A fantastic value SUV.
+                </p>
+            </div>
+
+            <!-- Car Listing 8 (Added): 2017 Honda Pilot -->
+            <div class="car-listing">
+                <h3>2017 Honda Pilot Touring</h3>
+                <p>Spacious 3rd-Row SUV</p>
+                <p style="font-size: 14px; color: #666;">AWD Touring 4dr SUV</p>
+                <hr>
+                <p><b>Price:</b> <span class="price-highlight">$19,500</span></p>
+                <p><b>Mileage:</b> 98,600</p>
+                <p><b>Engine:</b> 3.5L V6</p>
+                <p><b>Exterior Color:</b> Black Forest Pearl</p>
+                <p><b>Transmission:</b> Automatic 9-Speed</p>
+                <p><b>Drivetrain:</b> AWD</p>
+                <p><b>Fuel Economy:</b> 19 city / 27 hwy</p>
+                <hr>
+                <p style="margin-top: 10px;">
+                    <b>Condition/Repairability:</b> A perfect family hauler. It has higher mileage, but the engine is the highly capable Honda V6, known for running well over 200k miles. We have installed new brakes and tires. There are minor interior stains consistent with family use, but mechanically, it is ready to go. Very reliable platform.
+                </p>
+            </div>
+
+            <!-- Car Listing 9 (Added): 2019 Honda Passport -->
+            <div class="car-listing">
+                <h3>2019 Honda Passport Elite</h3>
+                <p>Adventure Ready Crossover</p>
+                <p style="font-size: 14px; color: #666;">AWD Elite 4dr SUV</p>
+                <hr>
+                <p><b>Price:</b> <span class="price-highlight">$27,880</span></p>
+                <p><b>Mileage:</b> 61,200</p>
+                <p><b>Engine:</b> 3.5L V6</p>
+                <p><b>Exterior Color:</b> Deep Scarlet Pearl</p>
+                <p><b>Transmission:</b> Automatic 9-Speed</p>
+                <p><b>Drivetrain:</b> AWD</p>
+                <p><b>Fuel Economy:</b> 20 city / 25 hwy</p>
+                <hr>
+                <p style="margin-top: 10px;">
+                    <b>Condition/Repairability:</b> This rugged Passport is clean but could use a deep exterior cleaning after some light off-road use by the previous owner. Mechanically sound with the robust Honda V6 engine. Repairability is excellent as it shares many components with the popular Honda Pilot, meaning parts are readily available.
+                </p>
+            </div>
+
+            <!-- Car Listing 10 (Added): 2022 Toyota Corolla -->
+            <div class="car-listing">
+                <h3>2022 Toyota Corolla SE</h3>
+                <p>Ultimate Commuter Sedan</p>
+                <p style="font-size: 14px; color: #666;">FWD SE 4dr Sedan</p>
+                <hr>
+                <p><b>Price:</b> <span class="price-highlight">$20,150</span></p>
+                <p><b>Mileage:</b> 31,500</p>
+                <p><b>Engine:</b> 2.0L I4</p>
+                <p><b>Exterior Color:</b> Celestial Silver Metallic</p>
+                <p><b>Transmission:</b> CVT</p>
+                <p><b>Drivetrain:</b> FWD</p>
+                <p><b>Fuel Economy:</b> 31 city / 40 hwy</p>
+                <hr>
+                <p style="margin-top: 10px;">
+                    <b>Condition/Repairability:</b> Certified pre-owned condition; this car is perfect. The engine is virtually "bulletproof," known to require only basic maintenance like oil changes and tire rotations. Extremely high repairability and the lowest cost of ownership in its class.
+                </p>
+            </div>
+
+            <!-- Car Listing 11 (Added): 2018 Toyota Camry -->
+            <div class="car-listing">
+                <h3>2018 Toyota Camry XLE</h3>
+                <p>Reliable & Comfortable</p>
+                <p style="font-size: 14px; color: #666;">FWD XLE 4dr Sedan</p>
+                <hr>
+                <p><b>Price:</b> <span class="price-highlight">$16,799</span></p>
+                <p><b>Mileage:</b> 89,900</p>
+                <p><b>Engine:</b> 2.5L I4</p>
+                <p><b>Exterior Color:</b> Ruby Flare Pearl</p>
+                <p><b>Transmission:</b> Automatic 8-Speed</p>
+                <p><b>Drivetrain:</b> FWD</p>
+                <p><b>Fuel Economy:</b> 29 city / 41 hwy</p>
+                <hr>
+                <p style="margin-top: 10px;">
+                    <b>Condition/Repairability:</b> High mileage but comes with meticulous service records, demonstrating exceptional care. The engine and transmission are strong and smooth. The Camry is renowned as one of the most reliable cars ever produced, meaning long-term repair costs are historically low.
+                </p>
+            </div>
+
+            <!-- Car Listing 12 (Added): 2021 Toyota RAV4 -->
+            <div class="car-listing">
+                <h3>2021 Toyota RAV4 XLE</h3>
+                <p>Popular Compact SUV</p>
+                <p style="font-size: 14px; color: #666;">AWD XLE 4dr SUV</p>
+                <hr>
+                <p><b>Price:</b> <span class="price-highlight">$26,450</span></p>
+                <p><b>Mileage:</b> 38,700</p>
+                <p><b>Engine:</b> 2.5L I4</p>
+                <p><b>Exterior Color:</b> Midnight Black Metallic</p>
+                <p><b>Transmission:</b> Automatic 8-Speed</p>
+                <p><b>Drivetrain:</b> AWD</p>
+                <p><b>Fuel Economy:</b> 27 city / 33 hwy</p>
+                <hr>
+                <p style="margin-top: 10px;">
+                    <b>Condition/Repairability:</b> A clean, low-mileage example of the popular RAV4. We noted minor fading on some of the exterior plastic trim pieces. This vehicle passed our comprehensive inspection with no mechanical issues. Repair costs are minimal due to the widespread availability of Toyota parts and service.
+                </p>
+            </div>
+
         </div>
 
-        <!-- Car Listing 4: 2023 Hyundai Tucson Hybrid -->
-        <div class="car-listing bg-white">
-            <h3 class="text-xl font-bold">2023 Hyundai Tucson Hybrid Blue</h3>
-            <p class="text-lg">for sale at Midstate Auto Group in Auburn MA</p>
-            <p class="text-sm text-gray-600">AWD Blue 4dr SUV</p>
-            <hr class="my-3">
-            <p><b>Price:</b> <span class="text-red-600 font-bold text-xl">$22,577</span></p>
-            <p><b>Mileage:</b> 51,480</p>
-            <p><b>Engine:</b> 1.6L I4</p>
-            <p><b>Exterior Color:</b> Amazon Gray Metallic</p>
-            <p><b>Transmission:</b> Automatic 6-Speed</p>
-            <p><b>Drivetrain:</b> AWD</p>
-            <p><b>Fuel Economy:</b> 38 city / 38 hwy</p>
-            <hr class="my-3">
-            <p class="mt-2">
-                <b>Condition/Repairability:</b> Pristine condition with excellent fuel economy. The hybrid system is still under substantial factory warranty, minimizing risk for the buyer. This vehicle requires only standard maintenance (oil changes, etc.). No known defects; a great, low-risk purchase.
-            </p>
+        <!-- FOOTER/DISCLAIMER -->
+        <div class="footer">
+            <p>Inventory subject to change. Prices exclude tax, title, and fees.</p>
         </div>
 
-        <!-- Car Listing 5: 2024 Hyundai Elantra -->
-        <div class="car-listing bg-white">
-            <h3 class="text-xl font-bold">2024 Hyundai Elantra SEL</h3>
-            <p class="text-lg">for sale at Midstate Auto Group in Auburn MA</p>
-            <p class="text-sm text-gray-600">SEL 4dr Sedan</p>
-            <hr class="my-3">
-            <p><b>Price:</b> <span class="text-red-600 font-bold text-xl">$21,777</span></p>
-            <p><b>Mileage:</b> 8,547</p>
-            <p><b>Engine:</b> 2.0L I4</p>
-            <p><b>Exterior Color:</b> Amazon Gray Pearl</p>
-            <p><b>Transmission:</b> CVT</p>
-            <p><b>Drivetrain:</b> FWD</p>
-            <p><b>Fuel Economy:</b> 32 city / 41 hwy</p>
-            <hr class="my-3">
-            <p class="mt-2">
-                <b>Condition/Repairability:</b> This vehicle is essentially new with extremely low mileage. It is still fully covered by the manufacturer's warranty. There are zero known defects or repair concerns. It is the definition of a worry-free purchase.
-            </p>
-        </div>
-
-        <!-- Car Listing 6: 2021 Hyundai Kona -->
-        <div class="car-listing bg-white">
-            <h3 class="text-xl font-bold">2021 Hyundai Kona SEL</h3>
-            <p class="text-lg">for sale at Midstate Auto Group in Auburn MA</p>
-            <p class="text-sm text-gray-600">AWD SEL 4dr Crossover</p>
-            <hr class="my-3">
-            <p><b>Price:</b> <span class="text-red-600 font-bold text-xl">$18,777</span></p>
-            <p><b>Mileage:</b> 66,636</p>
-            <p><b>Engine:</b> 2.0L I4</p>
-            <p><b>Exterior Color:</b> Ultra Black</p>
-            <p><b>Transmission:</b> Automatic 6-Speed</p>
-            <p><b>Drivetrain:</b> AWD</p>
-            <p><b>Fuel Economy:</b> 25 city / 30 hwy</p>
-            <hr class="my-3">
-            <p class="mt-2">
-                <b>Condition/Repairability:</b> A solid commuter and urban crossover. It has minor cosmetic dents on the driver side door, reflected in the low price. Mechanically, the engine is reliable and robust. Due to its small size and common parts, the Kona offers a low cost of ownership and very easy maintenance.
-            </p>
-        </div>
-
-        <!-- Car Listing 7 (Added): 2020 Honda CR-V -->
-        <div class="car-listing bg-white">
-            <h3 class="text-xl font-bold">2020 Honda CR-V EX-L</h3>
-            <p class="text-lg">New Arrival at Midstate Auto Group</p>
-            <p class="text-sm text-gray-600">FWD EX-L 4dr SUV</p>
-            <hr class="my-3">
-            <p><b>Price:</b> <span class="text-red-600 font-bold text-xl">$24,995</span></p>
-            <p><b>Mileage:</b> 45,120</p>
-            <p><b>Engine:</b> 1.5L I4 Turbo</p>
-            <p><b>Exterior Color:</b> Lunar Silver Metallic</p>
-            <p><b>Transmission:</b> CVT</p>
-            <p><b>Drivetrain:</b> FWD</p>
-            <p><b>Fuel Economy:</b> 28 city / 34 hwy</p>
-            <hr class="my-3">
-            <p class="mt-2">
-                <b>Condition/Repairability:</b> This CR-V is an ex-lease vehicle, extremely clean with full service records, well-maintained by the previous owner. It is known for its legendary reliability and simple engineering, ensuring great long-term repairability and low service costs. A fantastic value SUV.
-            </p>
-        </div>
-
-        <!-- Car Listing 8 (Added): 2017 Honda Pilot -->
-        <div class="car-listing bg-white">
-            <h3 class="text-xl font-bold">2017 Honda Pilot Touring</h3>
-            <p class="text-lg">Spacious 3rd-Row SUV</p>
-            <p class="text-sm text-gray-600">AWD Touring 4dr SUV</p>
-            <hr class="my-3">
-            <p><b>Price:</b> <span class="text-red-600 font-bold text-xl">$19,500</span></p>
-            <p><b>Mileage:</b> 98,600</p>
-            <p><b>Engine:</b> 3.5L V6</p>
-            <p><b>Exterior Color:</b> Black Forest Pearl</p>
-            <p><b>Transmission:</b> Automatic 9-Speed</p>
-            <p><b>Drivetrain:</b> AWD</p>
-            <p><b>Fuel Economy:</b> 19 city / 27 hwy</p>
-            <hr class="my-3">
-            <p class="mt-2">
-                <b>Condition/Repairability:</b> A perfect family hauler. It has higher mileage, but the engine is the highly capable Honda V6, known for running well over 200k miles. We have installed new brakes and tires. There are minor interior stains consistent with family use, but mechanically, it is ready to go. Very reliable platform.
-            </p>
-        </div>
-
-        <!-- Car Listing 9 (Added): 2019 Honda Passport -->
-        <div class="car-listing bg-white">
-            <h3 class="text-xl font-bold">2019 Honda Passport Elite</h3>
-            <p class="text-lg">Adventure Ready Crossover</p>
-            <p class="text-sm text-gray-600">AWD Elite 4dr SUV</p>
-            <hr class="my-3">
-            <p><b>Price:</b> <span class="text-red-600 font-bold text-xl">$27,880</span></p>
-            <p><b>Mileage:</b> 61,200</p>
-            <p><b>Engine:</b> 3.5L V6</p>
-            <p><b>Exterior Color:</b> Deep Scarlet Pearl</p>
-            <p><b>Transmission:</b> Automatic 9-Speed</p>
-            <p><b>Drivetrain:</b> AWD</p>
-            <p><b>Fuel Economy:</b> 20 city / 25 hwy</p>
-            <hr class="my-3">
-            <p class="mt-2">
-                <b>Condition/Repairability:</b> This rugged Passport is clean but could use a deep exterior cleaning after some light off-road use by the previous owner. Mechanically sound with the robust Honda V6 engine. Repairability is excellent as it shares many components with the popular Honda Pilot, meaning parts are readily available.
-            </p>
-        </div>
-
-        <!-- Car Listing 10 (Added): 2022 Toyota Corolla -->
-        <div class="car-listing bg-white">
-            <h3 class="text-xl font-bold">2022 Toyota Corolla SE</h3>
-            <p class="text-lg">Ultimate Commuter Sedan</p>
-            <p class="text-sm text-gray-600">FWD SE 4dr Sedan</p>
-            <hr class="my-3">
-            <p><b>Price:</b> <span class="text-red-600 font-bold text-xl">$20,150</span></p>
-            <p><b>Mileage:</b> 31,500</p>
-            <p><b>Engine:</b> 2.0L I4</p>
-            <p><b>Exterior Color:</b> Celestial Silver Metallic</p>
-            <p><b>Transmission:</b> CVT</p>
-            <p><b>Drivetrain:</b> FWD</p>
-            <p><b>Fuel Economy:</b> 31 city / 40 hwy</p>
-            <hr class="my-3">
-            <p class="mt-2">
-                <b>Condition/Repairability:</b> Certified pre-owned condition; this car is perfect. The engine is virtually "bulletproof," known to require only basic maintenance like oil changes and tire rotations. Extremely high repairability and the lowest cost of ownership in its class.
-            </p>
-        </div>
-
-        <!-- Car Listing 11 (Added): 2018 Toyota Camry -->
-        <div class="car-listing bg-white">
-            <h3 class="text-xl font-bold">2018 Toyota Camry XLE</h3>
-            <p class="text-lg">Reliable & Comfortable</p>
-            <p class="text-sm text-gray-600">FWD XLE 4dr Sedan</p>
-            <hr class="my-3">
-            <p><b>Price:</b> <span class="text-red-600 font-bold text-xl">$16,799</span></p>
-            <p><b>Mileage:</b> 89,900</p>
-            <p><b>Engine:</b> 2.5L I4</p>
-            <p><b>Exterior Color:</b> Ruby Flare Pearl</p>
-            <p><b>Transmission:</b> Automatic 8-Speed</p>
-            <p><b>Drivetrain:</b> FWD</p>
-            <p><b>Fuel Economy:</b> 29 city / 41 hwy</p>
-            <hr class="my-3">
-            <p class="mt-2">
-                <b>Condition/Repairability:</b> High mileage but comes with meticulous service records, demonstrating exceptional care. The engine and transmission are strong and smooth. The Camry is renowned as one of the most reliable cars ever produced, meaning long-term repair costs are historically low.
-            </p>
-        </div>
-
-        <!-- Car Listing 12 (Added): 2021 Toyota RAV4 -->
-        <div class="car-listing bg-white">
-            <h3 class="text-xl font-bold">2021 Toyota RAV4 XLE</h3>
-            <p class="text-lg">Popular Compact SUV</p>
-            <p class="text-sm text-gray-600">AWD XLE 4dr SUV</p>
-            <hr class="my-3">
-            <p><b>Price:</b> <span class="text-red-600 font-bold text-xl">$26,450</span></p>
-            <p><b>Mileage:</b> 38,700</p>
-            <p><b>Engine:</b> 2.5L I4</p>
-            <p><b>Exterior Color:</b> Midnight Black Metallic</p>
-            <p><b>Transmission:</b> Automatic 8-Speed</p>
-            <p><b>Drivetrain:</b> AWD</p>
-            <p><b>Fuel Economy:</b> 27 city / 33 hwy</p>
-            <hr class="my-3">
-            <p class="mt-2">
-                <b>Condition/Repairability:</b> A clean, low-mileage example of the popular RAV4. We noted minor fading on some of the exterior plastic trim pieces. This vehicle passed our comprehensive inspection with no mechanical issues. Repair costs are minimal due to the widespread availability of Toyota parts and service.
-            </p>
-        </div>
-
-    </div>
-
-    <!-- FOOTER/DISCLAIMER -->
-    <div class="max-w-4xl mx-auto text-center mt-10 pt-4 border-t border-gray-400">
-        <p class="text-xs text-gray-500">Inventory subject to change. Prices exclude tax, title, and fees.</p>
     </div>
 
 </body>
