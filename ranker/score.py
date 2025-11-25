@@ -1,4 +1,3 @@
-from bs4 import BeautifulSoup
 import bs4 as BeautifulSoup
 import numpy as np
 from urllib.request import urlopen
@@ -9,6 +8,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
 import networkx as nx
 import json
+import argparse
 
 stemmer = SnowballStemmer("english")
 
@@ -26,8 +26,11 @@ def stem_tokenizer(text):
 # Outputs:
 #   index: a map from the url to
 
+# Since we have external links we want to drop everything that isn't internal
+validIPv4 = "130.215.143.215"
 
-def indexWebsite(seed_url):
+
+def indexWebsite(seed_url, verbose=False):
 
     to_visit = [seed_url]
 
@@ -55,7 +58,8 @@ def indexWebsite(seed_url):
         if url in visited:
             continue
 
-        print(f"Visiting url: {url}")
+        if verbose:
+            print(f"Visiting url: {url}")
 
         try:
             html = urlopen(url).read()
@@ -75,10 +79,17 @@ def indexWebsite(seed_url):
         outlinks = set()
         for link in soup.find_all("a", href=True):
             target = urljoin(url, link["href"])
+
+            if validIPv4 not in target:
+                if verbose:
+                    print(f"Skipping outlink: {target}")
+                continue
+
             target_id = get_id(target)
 
-            print(f"Adding target_id: {target_id}")
-            print(f"Adding outlink: {target}")
+            if verbose:
+                print(f"Adding target_id: {target_id}")
+                print(f"Adding outlink: {target}")
             outlinks.add(target_id)
 
             if target not in visited and target not in to_visit:
@@ -130,6 +141,21 @@ def load_queries(filepath):
 
 if __name__ == "__main__":
 
+    # Parse command line arguments
+
+    parser = argparse.ArgumentParser(
+        description="Website rankings for a given query")
+
+    # Required positional argument
+    parser.add_argument("query", type=str,
+                        help="The query to be used for ranking items")
+
+    # Optional flag
+    parser.add_argument("--verbose", action="store_true",
+                        help="Enable verbose output")
+
+    args = parser.parse_args()
+
     # We need to ensure that we have the tokenizer downloaded
     import nltk
 
@@ -145,14 +171,16 @@ if __name__ == "__main__":
 
     # Index the doccuments and get a text info and info for building the tf-idf ranking
     url_to_id, id_to_url, texts, adj = indexWebsite(
-        "http://130.215.143.215/doc0.html")
+        "http://130.215.143.215/", verbose=args.verbose)
 
-    # print(f"url_to_id: {url_to_id}")
-    # print(f"id_to_url: {id_to_url}")
-    # print(f"texts: {texts}")
-    # print(f"adj: {adj}")
+    if args.verbose:
+        print(f"url_to_id: {url_to_id}")
+        print(f"id_to_url: {id_to_url}")
+        print(f"texts: {texts}")
+        print(f"adj: {adj}")
 
-    query = "repairable car"
+    # query = "repairable car"
+    query = args.query
 
     # TF-IDF COMPUTE
     # Get tf-idf scores across the doccuments
@@ -176,13 +204,14 @@ if __name__ == "__main__":
     # Get our text-space
     text_space = set()
     for text in texts:
-        for token in text:
+        for token in text.split(' '):
             text_space.add(token)
 
     vocab = list(text_space)
     index = {word: i for i, word in enumerate(vocab)}
 
-    print(index)
+    if args.verbose:
+        print(f"Index {index}")
 
     # Get our current query vector
     query_vec = vectorize(stemmed_query, index, len(vocab))
@@ -207,9 +236,13 @@ if __name__ == "__main__":
     normalRanking = {}
     ourRanking = {}
 
-    print("Rankings:")
+    if args.verbose:
+        print("Rankings:")
     for website_id in range(len(texts)):
         url = id_to_url[website_id]
+
+        if url.endswith("/"):  # If it's a directory
+            continue
 
         # 1. TF-IDF cosine similarity for this specific document
         doc_tfidf_score = cosine_similarity(
@@ -228,10 +261,11 @@ if __name__ == "__main__":
         normalRanking[url] = doc_tfidf_score*pr_score
         ourRanking[url] = doc_tfidf_score*pr_score*custom_method_score
 
-        print(f"{url} score: "
-              f"user-query: {custom_method_score}, "
-              f"tf-idf: {doc_tfidf_score}, "
-              f"pagerank: {pr_score}")
+        if args.verbose:
+            print(f"{url} score: "
+                  f"user-query: {custom_method_score}, "
+                  f"tf-idf: {doc_tfidf_score}, "
+                  f"pagerank: {pr_score}")
 
 print(f"Query: {query}")
 print("Normal ranking:")
