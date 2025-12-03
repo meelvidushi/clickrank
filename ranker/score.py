@@ -6,9 +6,11 @@ from nltk.stem import SnowballStemmer
 from nltk.tokenize import word_tokenize
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
+from sentence_transformers import SentenceTransformer, util
 import networkx as nx
 import json
 import argparse
+import math
 
 stemmer = SnowballStemmer("english")
 
@@ -200,8 +202,6 @@ if __name__ == "__main__":
 
     pagerank_scores = nx.pagerank(G)  # returns dict {doc_index: score}
 
-    # TODO: this assumes that we only get query words within the words in our text space from the scraper
-    # Get our text-space
     text_space = set()
     for text in texts:
         for token in text.split(' '):
@@ -213,8 +213,11 @@ if __name__ == "__main__":
     if args.verbose:
         print(f"Index {index}")
 
+    # Load a common embedding model
+    model = SentenceTransformer("all-MiniLM-L6-v2")
+
     # Get our current query vector
-    query_vec = vectorize(stemmed_query, index, len(vocab))
+    query_vec = model.encode(query)
 
     # Import our query history
     query_history = load_queries('queries.json')
@@ -222,13 +225,19 @@ if __name__ == "__main__":
     # Go through our query history, vectorize all of the
     # queries, and sum them for each URL
     url_query_vects = {}
-    for url in query_history:
-        combined_vect = np.zeros(len(vocab), dtype=np.int32)
-        for query in query_history[url]:
-            # We assume the query here (imported) is post-stemming
-            combined_vect = combined_vect + vectorize(query, index, len(vocab))
+    for page in query_history:
+        user_embedding = None
+        for priorQuery in query_history[page]:
+            if user_embedding is None:
+                user_embedding = model.encode(priorQuery)
+            else:
+                # Query here hasn't been stemmed since we need to use semantic understanding
+                queryEmbedding = model.encode(priorQuery)
+                if args.verbose:
+                    print(f"Query: {priorQuery}\nEmbedding: {queryEmbedding}")
+                user_embedding = user_embedding + queryEmbedding
 
-        url_query_vects[url] = combined_vect
+        url_query_vects[page] = user_embedding
 
     # Now we can go through and compute the score for each URL (we use 1 if
     # no data so we don't hurt things if we haven't seen that users want it
@@ -252,14 +261,22 @@ if __name__ == "__main__":
         pr_score = pagerank_scores[website_id]
 
         # 3. Prior query similarity score
-        if url not in url_query_vects:
+        urlPageName = url.split('/')[-1]
+        if args.verbose:
+            print(f"urlPageName: {urlPageName}")
+        if urlPageName not in url_query_vects:
             custom_method_score = 1.0
         else:
-            custom_method_score = cosine_similarity(
-                query_vec, url_query_vects[url])[0][0]
+            custom_method_score = util.cos_sim(
+                query_vec, url_query_vects[urlPageName])[0][0]
 
         normalRanking[url] = doc_tfidf_score*pr_score
-        ourRanking[url] = doc_tfidf_score*pr_score*custom_method_score
+        # ourRanking[url] = doc_tfidf_score*pr_score*custom_method_score
+
+        # We want to increase the impact of our prior query score
+        alpha = 100
+        ourRanking[url] = doc_tfidf_score * \
+            pr_score*math.exp(alpha * custom_method_score)
 
         if args.verbose:
             print(f"{url} score: "
