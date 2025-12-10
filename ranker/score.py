@@ -13,7 +13,7 @@ import argparse
 import math
 
 stemmer = SnowballStemmer("english")
-
+newWebPages=[]
 
 def stem_tokenizer(text):
     tokens = word_tokenize(text)
@@ -247,6 +247,7 @@ if __name__ == "__main__":
 
     if args.verbose:
         print("Rankings:")
+    
     for website_id in range(len(texts)):
         url = id_to_url[website_id]
 
@@ -262,10 +263,13 @@ if __name__ == "__main__":
 
         # 3. Prior query similarity score
         urlPageName = url.split('/')[-1]
+        
         if args.verbose:
-            print(f"urlPageName: {urlPageName}")
+            print(f"urlPageName: {urlPageName}")            
+
         if urlPageName not in url_query_vects:
-            custom_method_score = 1.0
+            newWebPages.append(urlPageName)
+            custom_method_score = 0
         else:
             custom_method_score = util.cos_sim(
                 query_vec, url_query_vects[urlPageName])[0][0]
@@ -283,6 +287,22 @@ if __name__ == "__main__":
                   f"user-query: {custom_method_score}, "
                   f"tf-idf: {doc_tfidf_score}, "
                   f"pagerank: {pr_score}")
+
+
+
+initial_sorting_ourRanking=sorted(ourRanking.items(), key=lambda x: x[1], reverse=True)
+
+if newWebPages:
+    thirdRankScore=(initial_sorting_ourRanking[1][1]+initial_sorting_ourRanking[2][1])/2
+    if args.verbose:
+        print(f"Assigning new pages a score of {thirdRankScore}. Rank 2 score is {initial_sorting_ourRanking[1]}, rank 3 score is {initial_sorting_ourRanking[2]}")
+    for newPage in newWebPages:
+        if args.verbose:
+            print(f"New page detected: {newPage}")
+        ourRanking[f"http://130.215.143.215/{newPage}"]=thirdRankScore
+
+if args.verbose:
+    print(initial_sorting_ourRanking)
 
 print(f"Query: {query}")
 print("Normal ranking:")
