@@ -140,6 +140,46 @@ def load_queries(filepath):
     except FileNotFoundError:
         return {}
 
+def get_ndcg(ideal_ranking, test_ranking, k=None):
+    test_rank_relevance_scores=[ideal_ranking.get(page, 0) for page in test_ranking]
+    if args.verbose:
+        print(f"test scores: {test_rank_relevance_scores}")
+    test_rank_dcg=0
+    ideal_dcg=0
+    ideal_scores = sorted(ideal_ranking.values(), reverse=True)
+    if args.verbose:
+        print(f"Ideal scores: {ideal_scores}")
+
+    if k is not None:
+        ideal_scores=ideal_scores[:k]
+        test_rank_relevance_scores=test_rank_relevance_scores[:k]
+
+    for i, rank in enumerate(ideal_scores):
+        ideal_dcg+=(rank/math.log2(i+2))
+    for i, rank in enumerate(test_rank_relevance_scores):
+        test_rank_dcg+=(rank/math.log2(i+2))
+
+    if args.verbose:
+        print(f"Ideal dcg: {ideal_dcg}, test rank dcg: {test_rank_dcg}")
+
+    ndcg = test_rank_dcg / ideal_dcg if ideal_dcg > 0 else 0.0
+    return ndcg
+    
+
+def eval(normalRanking, ourRanking, query_history):
+    # Defining relevance of documents for query : buy repairable car
+    relevanceScore=[1,3,0,1,0,3,3,1,0,1,1,1,0,2,2,3,3,1,3,0,3,2,0]
+    groundTruthRelevance={}
+    keys = list(query_history.keys())
+
+    for i in range(len(query_history)):
+        groundTruthRelevance[keys[i]]=relevanceScore[i]
+    if args.verbose:
+        print(f"ground truth relevance:{groundTruthRelevance}" )
+    normal_ranking_ndcg=get_ndcg(groundTruthRelevance,normalRanking, k=10)
+    our_ranking_ndcg=get_ndcg(groundTruthRelevance,ourRanking,k=10)
+    
+    print(f"NDCG with normal ranking: {normal_ranking_ndcg:.4f},NDCG with ClickRank: {our_ranking_ndcg:.4f}")
 
 if __name__ == "__main__":
 
@@ -274,12 +314,12 @@ if __name__ == "__main__":
             custom_method_score = util.cos_sim(
                 query_vec, url_query_vects[urlPageName])[0][0]
 
-        normalRanking[url] = doc_tfidf_score*pr_score
+        normalRanking[urlPageName] = doc_tfidf_score*pr_score
         # ourRanking[url] = doc_tfidf_score*pr_score*custom_method_score
 
         # We want to increase the impact of our prior query score
         alpha = 100
-        ourRanking[url] = doc_tfidf_score * \
+        ourRanking[urlPageName] = doc_tfidf_score * \
             pr_score*math.exp(alpha * custom_method_score)
 
         if args.verbose:
@@ -299,16 +339,22 @@ if newWebPages:
     for newPage in newWebPages:
         if args.verbose:
             print(f"New page detected: {newPage}")
-        ourRanking[f"http://130.215.143.215/{newPage}"]=thirdRankScore
+        ourRanking[newPage]=thirdRankScore
 
 if args.verbose:
     print(initial_sorting_ourRanking)
 
+sortedNormalRanking=sorted(normalRanking, key=normalRanking.get, reverse=True)
+sortedOurRanking=sorted(ourRanking, key=ourRanking.get, reverse=True)
+
 print(f"Query: {query}")
 print("Normal ranking:")
-for url in sorted(normalRanking, key=normalRanking.get, reverse=True):
+for url in sortedNormalRanking:
     print(f"Score {normalRanking[url]}, Page {url}")
 
 print("Our ranking:")
-for url in sorted(ourRanking, key=ourRanking.get, reverse=True):
+for url in sortedOurRanking:
     print(f"Score {ourRanking[url]}, Page {url}")
+
+eval(sortedNormalRanking, sortedOurRanking, query_history)
+
